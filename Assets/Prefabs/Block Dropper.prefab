@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5710836592669080598}
   - component: {fileID: 491980929879611626}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Block Dropper Bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -102,7 +102,7 @@ GameObject:
   - component: {fileID: 4978598006419770939}
   - component: {fileID: 4098879154674510810}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: Block Dropper Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -222,8 +222,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1899199473562729615}
+  - component: {fileID: 6443987098964454914}
   m_Layer: 0
-  m_Name: Block Spawner
+  m_Name: Block Dropper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -245,3 +246,16 @@ Transform:
   - {fileID: 801678792816481202}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6443987098964454914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5596815182068732675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48e43d58b14ea7f40aad6776dc71cd11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BlockDropperController
+  blockPrefab: {fileID: 5233473764482463533, guid: dcbabb423d5e56e42ad4c7f8481a75ef, type: 3}
