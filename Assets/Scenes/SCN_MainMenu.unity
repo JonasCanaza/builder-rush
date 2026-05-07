@@ -180,6 +180,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SettingsPanelController
   backButton: {fileID: 964696143}
   mainMenuManager: {fileID: 1794776521}
+  sliderMaster: {fileID: 255724778}
+  sliderMusic: {fileID: 1470203290}
+  audioMixer: {fileID: 24100000, guid: 013c1e21f8888a745a0c0ede92ad6388, type: 2}
 --- !u!1 &169564483
 GameObject:
   m_ObjectHideFlags: 0
@@ -322,6 +325,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2055631058738780089, guid: b4860ddd349ccef448726ea768abc426, type: 3}
   m_PrefabInstance: {fileID: 955187674916194654}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &255724778 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 619314220741270716, guid: b4860ddd349ccef448726ea768abc426, type: 3}
+  m_PrefabInstance: {fileID: 955187674916194654}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider
 --- !u!1 &282667749
 GameObject:
   m_ObjectHideFlags: 0
@@ -1363,6 +1377,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 284444859}
     m_Modifications:
     - target: {fileID: 881989910717079280, guid: b4860ddd349ccef448726ea768abc426, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 881989910717079280, guid: b4860ddd349ccef448726ea768abc426, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
@@ -1447,7 +1465,15 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2235001878978363198, guid: b4860ddd349ccef448726ea768abc426, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2235001878978363198, guid: b4860ddd349ccef448726ea768abc426, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2235001878978363198, guid: b4860ddd349ccef448726ea768abc426, type: 3}
+      propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5010571082090334367, guid: b4860ddd349ccef448726ea768abc426, type: 3}
@@ -1489,7 +1515,7 @@ Transform:
   m_GameObject: {fileID: 1419485866}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 253.95409, y: 251.41385, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1537,7 +1563,7 @@ AudioSource:
   m_GameObject: {fileID: 1461499874}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 6792340478181802781, guid: 013c1e21f8888a745a0c0ede92ad6388, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 45cc9921f2dca2448bfec3146f024863, type: 3}
   m_PlayOnAwake: 1
@@ -1634,6 +1660,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 284444859}
     m_Modifications:
     - target: {fileID: 881989910717079280, guid: b4860ddd349ccef448726ea768abc426, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 881989910717079280, guid: b4860ddd349ccef448726ea768abc426, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
@@ -1718,7 +1748,15 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2235001878978363198, guid: b4860ddd349ccef448726ea768abc426, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2235001878978363198, guid: b4860ddd349ccef448726ea768abc426, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2235001878978363198, guid: b4860ddd349ccef448726ea768abc426, type: 3}
+      propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5010571082090334367, guid: b4860ddd349ccef448726ea768abc426, type: 3}
@@ -1735,6 +1773,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2055631058738780089, guid: b4860ddd349ccef448726ea768abc426, type: 3}
   m_PrefabInstance: {fileID: 1470203288}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1470203290 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 619314220741270716, guid: b4860ddd349ccef448726ea768abc426, type: 3}
+  m_PrefabInstance: {fileID: 1470203288}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider
 --- !u!1001 &1602297836
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2366,6 +2415,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 284444859}
     m_Modifications:
     - target: {fileID: 881989910717079280, guid: b4860ddd349ccef448726ea768abc426, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 881989910717079280, guid: b4860ddd349ccef448726ea768abc426, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
@@ -2450,7 +2503,15 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2235001878978363198, guid: b4860ddd349ccef448726ea768abc426, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2235001878978363198, guid: b4860ddd349ccef448726ea768abc426, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2235001878978363198, guid: b4860ddd349ccef448726ea768abc426, type: 3}
+      propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5010571082090334367, guid: b4860ddd349ccef448726ea768abc426, type: 3}
