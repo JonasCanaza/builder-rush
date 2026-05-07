@@ -8,6 +8,9 @@ public class BlockController : MonoBehaviour
     private Collider col;
     private bool isPlaced = false;
 
+    [Header("Block Settings")]
+    [SerializeField] private int scoreValue = 20;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -27,6 +30,7 @@ public class BlockController : MonoBehaviour
         if (!isPlaced)
         {
             PlaceBlock(collision);
+            GameManager.Instance.AddScore(scoreValue);
         }
     }
 
