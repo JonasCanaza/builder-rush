@@ -7,6 +7,7 @@ public class MainPanelController : MonoBehaviour
     [Header("References Settings")]
     [SerializeField] private Button buttonPlay;
     [SerializeField] private Button buttonSettings;
+    [SerializeField] private Button buttonCredits;
     [SerializeField] private Button buttonExit;
     [SerializeField] private MainMenuManager mainMenuManager;
 
@@ -14,6 +15,7 @@ public class MainPanelController : MonoBehaviour
     {
         buttonPlay.onClick.AddListener(OnButtonPlayClicked);
         buttonSettings.onClick.AddListener(OnButtonSettingsClicked);
+        buttonCredits.onClick.AddListener(OnButtonCreditsClicked);
         buttonExit.onClick.AddListener(OnButtonExitClicked);
     }
 
@@ -21,6 +23,7 @@ public class MainPanelController : MonoBehaviour
     {
         buttonPlay.onClick.RemoveAllListeners();
         buttonSettings.onClick.RemoveAllListeners();
+        buttonCredits.onClick.RemoveAllListeners();
         buttonExit.onClick.RemoveAllListeners();
     }
 
@@ -32,6 +35,11 @@ public class MainPanelController : MonoBehaviour
     private void OnButtonSettingsClicked()
     {
         mainMenuManager.ShowSettingsPanel();
+    }
+
+    private void OnButtonCreditsClicked()
+    {
+        mainMenuManager.ShowCreditsPanel();
     }
 
     private void OnButtonExitClicked()
