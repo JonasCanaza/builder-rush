@@ -1,7 +1,13 @@
 using UnityEngine;
 
+[RequireComponent(typeof(BoxCollider))]
+[RequireComponent(typeof(Rigidbody))]
+
 public class BlockController : MonoBehaviour
 {
+    private const float GRAVITY_MULTIPLIER_OFFSET = 1.0f;
+    private const float MAX_PERCENTAGE = 100.0f;
+
     [Header("Physics Settings")]
     [SerializeField] private float gravityMultiplier = 4.0f;
     private Rigidbody rb;
@@ -12,8 +18,6 @@ public class BlockController : MonoBehaviour
     [SerializeField] private int scoreValue = 20;
     [SerializeField] private float perfectOverlap = 90.0f;
     [SerializeField] private float goodOverlap = 45.0f;
-    private const float GRAVITY_MULTIPLIER_OFFSET = 1.0f;
-    private const float MAX_PERCENTAGE = 100.0f;
 
     private void Awake()
     {
