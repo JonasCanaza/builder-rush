@@ -5,12 +5,14 @@ public class AudioManager : MonoBehaviourSingleton<AudioManager>
 {
     [Header("Scenes Settings")]
     public const string MainMenu = "SCN_MainMenu";
+    public const string Gameplay = "SCN_Gameplay";
 
     [Header("Sources Settings")]
     [SerializeField] private AudioSource musicSource;
 
     [Header("Clips Settings")]
     [SerializeField] private AudioClip menuMusic;
+    [SerializeField] private AudioClip gameplayMusic;
 
     protected override void Awake()
     {
@@ -43,6 +45,11 @@ public class AudioManager : MonoBehaviourSingleton<AudioManager>
             case MainMenu:
 
                 PlayMusic(menuMusic);
+
+                break;
+            case Gameplay:
+
+                PlayMusic(gameplayMusic);
 
                 break;
         }
