@@ -17,20 +17,20 @@ public class KillZone : MonoBehaviour
 
     private void Start()
     {
-        GameManager.Instance.OnFirstBlockPlaced += ActivateCollider;
+        GameManager.Instance.OnBlocksPlacedChanged += HandleBlocksPlacedChanged;
     }
 
     private void OnDestroy()
     {
         if (GameManager.Instance != null)
         {
-            GameManager.Instance.OnFirstBlockPlaced -= ActivateCollider;
+            GameManager.Instance.OnBlocksPlacedChanged -= HandleBlocksPlacedChanged;
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == blockLayer)
+        if (other.gameObject.layer == blockLayer && !GameManager.Instance.IsGameOver)
         {
             Rigidbody otherRb = other.GetComponent<Rigidbody>();
 
@@ -41,8 +41,8 @@ public class KillZone : MonoBehaviour
         }
     }
 
-    private void ActivateCollider()
+    private void HandleBlocksPlacedChanged(int blocksPlaced)
     {
-        col.enabled = true;
+        col.enabled = blocksPlaced > 0;
     }
 }

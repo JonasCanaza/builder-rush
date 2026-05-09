@@ -35,7 +35,7 @@ public class BlockController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (!isPlaced)
+        if (!isPlaced && !GameManager.Instance.IsGameOver)
         {
             PlaceBlock(collision);
 
