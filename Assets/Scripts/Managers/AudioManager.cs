@@ -9,6 +9,7 @@ public class AudioManager : MonoBehaviourSingleton<AudioManager>
 
     [Header("Sources Settings")]
     [SerializeField] private AudioSource musicSource;
+    [SerializeField] private AudioSource sfxSource;
 
     [Header("Clips Settings")]
     [SerializeField] private AudioClip menuMusic;
@@ -36,6 +37,11 @@ public class AudioManager : MonoBehaviourSingleton<AudioManager>
             musicSource.clip = clip;
             musicSource.Play();
         }
+    }
+
+    public void PlaySFX(AudioClip clip)
+    {
+        sfxSource.PlayOneShot(clip);
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)

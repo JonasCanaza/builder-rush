@@ -189,3 +189,4 @@ MonoBehaviour:
   scoreValue: 20
   perfectOverlap: 90
   goodOverlap: 45
+  collisionSfx: {fileID: 8300000, guid: 52dfe4c231505c444aca3774c7e76b95, type: 3}

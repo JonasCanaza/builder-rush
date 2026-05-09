@@ -19,6 +19,9 @@ public class BlockController : MonoBehaviour
     [SerializeField] private float perfectOverlap = 90.0f;
     [SerializeField] private float goodOverlap = 45.0f;
 
+    [Header("Clips Settings")]
+    [SerializeField] private AudioClip collisionSfx;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -38,6 +41,7 @@ public class BlockController : MonoBehaviour
         if (!isPlaced && !GameManager.Instance.IsGameOver)
         {
             PlaceBlock(collision);
+            AudioManager.Instance.PlaySFX(collisionSfx);
 
             if (GameManager.Instance.BlocksPlaced == 0)
             {
