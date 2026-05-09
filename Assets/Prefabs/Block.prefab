@@ -190,3 +190,5 @@ MonoBehaviour:
   perfectOverlap: 90
   goodOverlap: 45
   collisionSfx: {fileID: 8300000, guid: 52dfe4c231505c444aca3774c7e76b95, type: 3}
+  goodPlacedSfx: {fileID: 8300000, guid: 4596990f26d969947adca3c34fb71d21, type: 3}
+  perfectPlacedSfx: {fileID: 8300000, guid: a1ddab9925c69d04b8a57f7bed496d5d, type: 3}

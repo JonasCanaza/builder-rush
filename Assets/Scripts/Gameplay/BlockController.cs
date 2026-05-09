@@ -21,6 +21,8 @@ public class BlockController : MonoBehaviour
 
     [Header("Clips Settings")]
     [SerializeField] private AudioClip collisionSfx;
+    [SerializeField] private AudioClip goodPlacedSfx;
+    [SerializeField] private AudioClip perfectPlacedSfx;
 
     private void Awake()
     {
@@ -47,6 +49,7 @@ public class BlockController : MonoBehaviour
             {
                 GameManager.Instance.AddScore(scoreValue);
                 GameManager.Instance.RegisterBlock();
+                AudioManager.Instance.PlaySFX(goodPlacedSfx);
             }
             else
             {
@@ -95,10 +98,12 @@ public class BlockController : MonoBehaviour
         {
             GameManager.Instance.AddScore(scoreValue * 2);
             GameManager.Instance.AddPerfectPlacement();
+            AudioManager.Instance.PlaySFX(perfectPlacedSfx);
         }
         else if (overlapPercentage > goodOverlap)
         {
             GameManager.Instance.AddScore(scoreValue);
+            AudioManager.Instance.PlaySFX(goodPlacedSfx);
         }
         else
         {
