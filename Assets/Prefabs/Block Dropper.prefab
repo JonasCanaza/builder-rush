@@ -259,5 +259,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BlockDropperController
   blockPrefab: {fileID: 5233473764482463533, guid: dcbabb423d5e56e42ad4c7f8481a75ef, type: 3}
-  speed: 6
-  limitX: 6
+  movementSpeed: 6
+  movementLimitX: 6
+  launchSfx: {fileID: 8300000, guid: e053153acc5865046b5b236a3415973c, type: 3}

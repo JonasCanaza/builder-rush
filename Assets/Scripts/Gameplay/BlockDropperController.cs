@@ -10,6 +10,9 @@ public class BlockDropperController : MonoBehaviour
     [SerializeField] private float movementLimitX = 6.0f;
     private float direction = 1.0f;
 
+    [Header("Clips Settings")]
+    [SerializeField] private AudioClip launchSfx;
+
     private void Update()
     {
         ReadInput();
@@ -21,6 +24,7 @@ public class BlockDropperController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Instantiate(blockPrefab, transform.position, Quaternion.identity);
+            AudioManager.Instance.PlaySFX(launchSfx);
         }
     }
 
