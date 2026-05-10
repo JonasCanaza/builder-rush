@@ -3,6 +3,8 @@ using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviourSingleton<AudioManager>
 {
+    public bool IsMusicPaused { get; private set; }
+
     [Header("Scenes Settings")]
     public const string MainMenu = "SCN_MainMenu";
     public const string Gameplay = "SCN_Gameplay";
@@ -36,6 +38,32 @@ public class AudioManager : MonoBehaviourSingleton<AudioManager>
             musicSource.loop = true;
             musicSource.clip = clip;
             musicSource.Play();
+
+            IsMusicPaused = false;
+        }
+    }
+
+    public void StopMusic()
+    {
+        musicSource.Stop();
+        IsMusicPaused = false;
+    }
+
+    public void PauseMusic()
+    {
+        if (!IsMusicPaused)
+        {
+            musicSource.Pause();
+            IsMusicPaused = true;
+        }
+    }
+
+    public void ResumeMusic()
+    {
+        if (IsMusicPaused)
+        {
+            musicSource.UnPause();
+            IsMusicPaused = false;
         }
     }
 

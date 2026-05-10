@@ -13,14 +13,32 @@ public class BlockDropperController : MonoBehaviour
     [Header("Clips Settings")]
     [SerializeField] private AudioClip launchSfx;
 
+    [Header("Pause Settings")]
+    [SerializeField] private GameplayUIManager gameplayUIManager;
+
     private void Update()
     {
-        ReadInput();
-        Movement();
+        ReadPauseInput();
+
+        if (!gameplayUIManager.IsPaused)
+        {
+            ReadGameplayInput();
+            Movement();
+        }
     }
 
-    private void ReadInput()
+    private void ReadPauseInput()
     {
+        // PAUSE
+        if (Input.GetKeyUp(KeyCode.Escape))
+        {
+            gameplayUIManager.ToggleShowPausePanel();
+        }
+    }
+
+    private void ReadGameplayInput()
+    {
+        // DROP
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Instantiate(blockPrefab, transform.position, Quaternion.identity);
