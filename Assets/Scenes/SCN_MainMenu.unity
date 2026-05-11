@@ -182,6 +182,7 @@ MonoBehaviour:
   mainMenuManager: {fileID: 1794776521}
   sliderMaster: {fileID: 255724778}
   sliderMusic: {fileID: 1470203290}
+  sliderSfx: {fileID: 1973992415}
   audioMixer: {fileID: 24100000, guid: 013c1e21f8888a745a0c0ede92ad6388, type: 2}
 --- !u!1 &169564483
 GameObject:
@@ -2211,7 +2212,7 @@ AudioSource:
   m_GameObject: {fileID: 1825452393}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 24300002, guid: 013c1e21f8888a745a0c0ede92ad6388, type: 2}
+  OutputAudioMixerGroup: {fileID: -5143473862601265693, guid: 013c1e21f8888a745a0c0ede92ad6388, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
@@ -2537,6 +2538,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.ContentSizeFitter
   m_HorizontalFit: 1
   m_VerticalFit: 1
+--- !u!114 &1973992415 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 619314220741270716, guid: b4860ddd349ccef448726ea768abc426, type: 3}
+  m_PrefabInstance: {fileID: 1336122662}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider
 --- !u!224 &1974962270 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3203705022718416175, guid: 9e30d07602a1f77419f670b4c20f7b28, type: 3}

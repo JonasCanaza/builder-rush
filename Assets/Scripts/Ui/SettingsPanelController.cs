@@ -11,9 +11,11 @@ public class SettingsPanelController : MonoBehaviour
     [Header("Audio Settings")]
     [SerializeField] private Slider sliderMaster;
     [SerializeField] private Slider sliderMusic;
+    [SerializeField] private Slider sliderSfx;
     [SerializeField] private AudioMixer audioMixer;
-    private const string MasterVolumeKey = "MasterVolume";
-    private const string MusicVolumeKey = "MusicVolume";
+    private const string MASTER_VOLUME_KEY = "MasterVolume";
+    private const string MUSIC_VOLUME_KEY = "MusicVolume";
+    private const string SFX_VOLUME_KEY = "SfxVolume";
 
     private void Awake()
     {
@@ -21,6 +23,7 @@ public class SettingsPanelController : MonoBehaviour
 
         sliderMaster.onValueChanged.AddListener(OnMasterVolumeChanged);
         sliderMusic.onValueChanged.AddListener(OnMusicVolumeChanged);
+        sliderSfx.onValueChanged.AddListener(OnSfxVolumeChanged);
     }
 
     private void OnDestroy()
@@ -29,6 +32,7 @@ public class SettingsPanelController : MonoBehaviour
 
         sliderMaster.onValueChanged.RemoveAllListeners();
         sliderMusic.onValueChanged.RemoveAllListeners();
+        sliderSfx.onValueChanged.RemoveAllListeners();
     }
 
     private void OnButtonBackClicked()
@@ -38,11 +42,16 @@ public class SettingsPanelController : MonoBehaviour
 
     private void OnMasterVolumeChanged(float currentValue)
     {
-        audioMixer.SetFloat(MasterVolumeKey, currentValue);
+        audioMixer.SetFloat(MASTER_VOLUME_KEY, currentValue);
     }
 
     private void OnMusicVolumeChanged(float currentValue)
     {
-        audioMixer.SetFloat(MusicVolumeKey, currentValue);
+        audioMixer.SetFloat(MUSIC_VOLUME_KEY, currentValue);
+    }
+
+    private void OnSfxVolumeChanged(float currentValue)
+    {
+        audioMixer.SetFloat(SFX_VOLUME_KEY, currentValue);
     }
 }
