@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     public event Action<int> OnScoreChanged;
     public event Action<int> OnPerfectPlacementsChanged;
     public event Action<int> OnBlocksPlacedChanged;
+    public event Action OnBlockPlaced;
 
     public bool IsGameOver { get; private set; }
     public int Score { get; private set; }
@@ -44,6 +45,7 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     {
         BlocksPlaced++;
         OnBlocksPlacedChanged?.Invoke(BlocksPlaced);
+        OnBlockPlaced?.Invoke();
     }
 
     public void GameOver()

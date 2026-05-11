@@ -3,18 +3,26 @@ using UnityEngine;
 public class BlockDropperController : MonoBehaviour
 {
     [Header("Block Settings")]
-    [SerializeField] private GameObject blockPrefab;
+    [SerializeField] private BlockController blockPrefab;
 
     [Header("Movement Settings")]
     [SerializeField] private float movementSpeed = 6.0f;
     [SerializeField] private float movementLimitX = 6.0f;
     private float direction = 1.0f;
+    private bool throwable;
 
     [Header("Clips Settings")]
     [SerializeField] private AudioClip launchSfx;
 
     [Header("Pause Settings")]
     [SerializeField] private GameplayUIManager gameplayUIManager;
+
+    private void Start()
+    {
+        GameManager.Instance.OnBlockPlaced += ActivateThrowable;
+
+        throwable = true;
+    }
 
     private void Update()
     {
@@ -25,6 +33,11 @@ public class BlockDropperController : MonoBehaviour
             ReadGameplayInput();
             Movement();
         }
+    }
+
+    private void OnDestroy()
+    {
+        GameManager.Instance.OnBlockPlaced -= ActivateThrowable;
     }
 
     private void ReadPauseInput()
@@ -39,8 +52,9 @@ public class BlockDropperController : MonoBehaviour
     private void ReadGameplayInput()
     {
         // DROP
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && throwable)
         {
+            throwable = false;
             Instantiate(blockPrefab, transform.position, Quaternion.identity);
             AudioManager.Instance.PlaySFX(launchSfx);
         }
@@ -58,5 +72,10 @@ public class BlockDropperController : MonoBehaviour
 
             direction *= -1;
         }
+    }
+
+    private void ActivateThrowable()
+    {
+        throwable = true;
     }
 }
