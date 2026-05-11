@@ -6362,6 +6362,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 49a0d8590889ed64a86b734fc36d2faa, type: 3}
   m_PrefabInstance: {fileID: 1621962252}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1623667578
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1623667579}
+  m_Layer: 0
+  m_Name: Blocks Container
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1623667579
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1623667578}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1636417640
 GameObject:
   m_ObjectHideFlags: 0
@@ -9397,6 +9428,10 @@ PrefabInstance:
       value: Block Dropper
       objectReference: {fileID: 0}
     - target: {fileID: 6443987098964454914, guid: 73b350a549be10a4d8748a70745bc41c, type: 3}
+      propertyPath: blocksContainer
+      value: 
+      objectReference: {fileID: 1623667579}
+    - target: {fileID: 6443987098964454914, guid: 73b350a549be10a4d8748a70745bc41c, type: 3}
       propertyPath: gameplayUIManager
       value: 
       objectReference: {fileID: 1825893027}
@@ -9412,6 +9447,7 @@ SceneRoots:
   - {fileID: 410087041}
   - {fileID: 832575519}
   - {fileID: 574678032}
+  - {fileID: 1623667579}
   - {fileID: 870815038}
   - {fileID: 1860825766}
   - {fileID: 1825893026}

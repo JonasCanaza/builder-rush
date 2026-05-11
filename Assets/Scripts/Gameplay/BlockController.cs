@@ -13,6 +13,7 @@ public class BlockController : MonoBehaviour
     private Rigidbody rb;
     private Collider col;
     private bool isPlaced = false;
+    private bool attachedToDropper = true;
 
     [Header("Block Settings")]
     [SerializeField] private int scoreValue = 20;
@@ -32,7 +33,7 @@ public class BlockController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!isPlaced)
+        if (!isPlaced && !attachedToDropper)
         {
             ApplyExtraGravity();
         }
@@ -56,6 +57,18 @@ public class BlockController : MonoBehaviour
                 EvaluatePlacement(collision);
             }
         }
+    }
+
+    public void AttachToDropper()
+    {
+        attachedToDropper = true;
+        rb.isKinematic = true;
+    }
+
+    public void Release()
+    {
+        attachedToDropper = false;
+        rb.isKinematic = false;
     }
 
     private void ApplyExtraGravity()

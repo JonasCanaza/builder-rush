@@ -4,12 +4,14 @@ public class BlockDropperController : MonoBehaviour
 {
     [Header("Block Settings")]
     [SerializeField] private BlockController blockPrefab;
+    [SerializeField] private Transform spawnPoint;
+    [SerializeField] private Transform blocksContainer;
+    private BlockController currentBlock;
 
     [Header("Movement Settings")]
     [SerializeField] private float movementSpeed = 6.0f;
     [SerializeField] private float movementLimitX = 6.0f;
     private float direction = 1.0f;
-    private bool throwable;
 
     [Header("Clips Settings")]
     [SerializeField] private AudioClip launchSfx;
@@ -19,9 +21,9 @@ public class BlockDropperController : MonoBehaviour
 
     private void Start()
     {
-        GameManager.Instance.OnBlockPlaced += ActivateThrowable;
+        SpawnBlock();
 
-        throwable = true;
+        GameManager.Instance.OnBlockPlaced += SpawnBlock;
     }
 
     private void Update()
@@ -32,12 +34,17 @@ public class BlockDropperController : MonoBehaviour
         {
             ReadGameplayInput();
             Movement();
+
+            FollowCurrentBlock();
         }
     }
 
     private void OnDestroy()
     {
-        GameManager.Instance.OnBlockPlaced -= ActivateThrowable;
+        if (GameManager.Instance)
+        {
+            GameManager.Instance.OnBlockPlaced -= SpawnBlock;
+        }
     }
 
     private void ReadPauseInput()
@@ -52,11 +59,9 @@ public class BlockDropperController : MonoBehaviour
     private void ReadGameplayInput()
     {
         // DROP
-        if (Input.GetKeyDown(KeyCode.Space) && throwable)
+        if (Input.GetKeyDown(KeyCode.Space) && currentBlock)
         {
-            throwable = false;
-            Instantiate(blockPrefab, transform.position, Quaternion.identity);
-            AudioManager.Instance.PlaySFX(launchSfx);
+            ReleaseCurrentBlock();
         }
     }
 
@@ -74,8 +79,25 @@ public class BlockDropperController : MonoBehaviour
         }
     }
 
-    private void ActivateThrowable()
+    private void FollowCurrentBlock()
     {
-        throwable = true;
+        if (currentBlock)
+        {
+            currentBlock.transform.position = spawnPoint.position;
+        }
+    }
+
+    private void SpawnBlock()
+    {
+        currentBlock = Instantiate(blockPrefab, spawnPoint.position, Quaternion.identity, blocksContainer);
+        currentBlock.AttachToDropper();
+    }
+
+    private void ReleaseCurrentBlock()
+    {
+        currentBlock.Release();
+        currentBlock = null;
+
+        AudioManager.Instance.PlaySFX(launchSfx);
     }
 }
