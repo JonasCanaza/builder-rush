@@ -7,17 +7,24 @@ public class GameplayUIManager : MonoBehaviour
 
     [Header("Panel Settings")]
     [SerializeField] private PausePanelController pausePanel;
+    [SerializeField] private SettingsPanelController settingsPanel;
 
-    private void OnEnable()
+    private void Start()
     {
-        pausePanel.OnResume += ResumeGame;
-        pausePanel.OnExit += BackToMenu;
+        pausePanel.OnResumeButtonClicked += ResumeGame;
+        pausePanel.OnSettingsButtonClicked += ShowSettingsPanel;
+        pausePanel.OnExitButtonClicked += BackToMenu;
+
+        settingsPanel.OnBackPressed += ShowPausePanel;
     }
 
     private void OnDestroy()
     {
-        pausePanel.OnResume -= ResumeGame;
-        pausePanel.OnExit -= BackToMenu;
+        pausePanel.OnResumeButtonClicked -= ResumeGame;
+        pausePanel.OnSettingsButtonClicked -= ShowSettingsPanel;
+        pausePanel.OnExitButtonClicked -= BackToMenu;
+
+        settingsPanel.OnBackPressed -= ShowPausePanel;
     }
 
     public void ToggleShowPausePanel()
@@ -30,6 +37,18 @@ public class GameplayUIManager : MonoBehaviour
         {
             PauseGame();
         }
+    }
+
+    public void ShowPausePanel()
+    {
+        pausePanel.gameObject.SetActive(true);
+        settingsPanel.gameObject.SetActive(false);
+    }
+
+    public void ShowSettingsPanel()
+    {
+        pausePanel.gameObject.SetActive(false);
+        settingsPanel.gameObject.SetActive(true);
     }
 
     private void PauseGame()

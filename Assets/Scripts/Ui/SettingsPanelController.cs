@@ -1,12 +1,14 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Audio;
+using System;
 
 public class SettingsPanelController : MonoBehaviour
 {
+    public event Action OnBackPressed;
+
     [Header("Panel Settings")]
     [SerializeField] private Button backButton;
-    [SerializeField] private MainMenuManager mainMenuManager;
 
     [Header("Audio Settings")]
     [SerializeField] private Slider sliderMaster;
@@ -37,7 +39,7 @@ public class SettingsPanelController : MonoBehaviour
 
     private void OnButtonBackClicked()
     {
-        mainMenuManager.ShowMainPanel();
+        OnBackPressed?.Invoke();
     }
 
     private void OnMasterVolumeChanged(float currentValue)
