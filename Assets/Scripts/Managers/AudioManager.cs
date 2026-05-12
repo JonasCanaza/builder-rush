@@ -35,6 +35,7 @@ public class AudioManager : MonoBehaviourSingleton<AudioManager>
     {
         if (musicSource.clip != clip)
         {
+            musicSource.enabled = true;
             musicSource.loop = true;
             musicSource.clip = clip;
             musicSource.Play();
