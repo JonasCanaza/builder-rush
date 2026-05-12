@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class GameplayRootController : MonoBehaviour
 {
-    [SerializeField] private int blocksBeforeMove = 2;
+    [SerializeField] private int towersBeforeMove = 2;
     [SerializeField] private float moveHeight = 2.0f;
     [SerializeField] private float moveSpeed = 5.0f;
 
@@ -10,7 +10,7 @@ public class GameplayRootController : MonoBehaviour
 
     private void Start()
     {
-        GameManager.Instance.OnBlocksPlacedChanged += HandleBlockPlaced;
+        GameManager.Instance.OnTowersPlacedChanged += HandleTowerPlaced;
 
         targetPosition = transform.position;
     }
@@ -19,7 +19,7 @@ public class GameplayRootController : MonoBehaviour
     {
         if (GameManager.Instance)
         {
-            GameManager.Instance.OnBlocksPlacedChanged -= HandleBlockPlaced;
+            GameManager.Instance.OnTowersPlacedChanged -= HandleTowerPlaced;
         }
     }
 
@@ -28,9 +28,9 @@ public class GameplayRootController : MonoBehaviour
         transform.position = Vector3.Lerp(transform.position, targetPosition, moveSpeed * Time.deltaTime);
     }
 
-    private void HandleBlockPlaced(int blocksPlaced)
+    private void HandleTowerPlaced(int towersPlaced)
     {
-        if (blocksPlaced > blocksBeforeMove)
+        if (towersPlaced > towersBeforeMove)
         {
             targetPosition.y += moveHeight;
         }

@@ -3,7 +3,7 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider))]
 [RequireComponent(typeof(Rigidbody))]
 
-public class BlockController : MonoBehaviour
+public class TowerController : MonoBehaviour
 {
     private const float GRAVITY_MULTIPLIER_OFFSET = 1.0f;
     private const float MAX_PERCENTAGE = 100.0f;
@@ -15,7 +15,7 @@ public class BlockController : MonoBehaviour
     private bool isPlaced = false;
     private bool attachedToDropper = true;
 
-    [Header("Block Settings")]
+    [Header("Tower Settings")]
     [SerializeField] private int scoreValue = 20;
     [SerializeField] private float perfectOverlap = 90.0f;
     [SerializeField] private float goodOverlap = 45.0f;
@@ -43,13 +43,13 @@ public class BlockController : MonoBehaviour
     {
         if (!isPlaced && !GameManager.Instance.IsGameOver)
         {
-            PlaceBlock(collision);
+            PlaceTower(collision);
             AudioManager.Instance.PlaySFX(collisionSfx);
 
-            if (GameManager.Instance.BlocksPlaced == 0)
+            if (GameManager.Instance.TowersPlaced == 0)
             {
                 GameManager.Instance.AddScore(scoreValue);
-                GameManager.Instance.RegisterBlock();
+                GameManager.Instance.RegisterTower();
                 AudioManager.Instance.PlaySFX(goodPlacedSfx);
             }
             else
@@ -76,7 +76,7 @@ public class BlockController : MonoBehaviour
         rb.AddForce(Physics.gravity * (gravityMultiplier - GRAVITY_MULTIPLIER_OFFSET), ForceMode.Acceleration);
     }
 
-    private void PlaceBlock(Collision collision)
+    private void PlaceTower(Collision collision)
     {
         StopPhysics();
         AlignOnTop(collision);
@@ -127,7 +127,7 @@ public class BlockController : MonoBehaviour
 
         if (isValidPlacement)
         {
-            GameManager.Instance.RegisterBlock();
+            GameManager.Instance.RegisterTower();
         }
     }
 
@@ -142,8 +142,8 @@ public class BlockController : MonoBehaviour
         float overlapMax = Mathf.Min(thisRightEdge, otherRightEdge);
         float overlap = Mathf.Max(0.0f, overlapMax - overlapMin);
 
-        float blockWidth = col.bounds.size.x;
+        float towerWidth = col.bounds.size.x;
 
-        return Mathf.Clamp((overlap / blockWidth) * MAX_PERCENTAGE, 0.0f, MAX_PERCENTAGE);
+        return Mathf.Clamp((overlap / towerWidth) * MAX_PERCENTAGE, 0.0f, MAX_PERCENTAGE);
     }
 }

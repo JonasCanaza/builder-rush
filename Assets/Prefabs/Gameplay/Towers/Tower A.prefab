@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8578270705666794448}
   - component: {fileID: 1642720901557658847}
   - component: {fileID: 5507909471228480006}
-  - component: {fileID: -7638993119611605146}
+  - component: {fileID: 5756258864908256894}
   m_Layer: 7
   m_Name: Tower A
   m_TagString: Untagged
@@ -83,7 +83,7 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 112
   m_CollisionDetection: 2
---- !u!114 &-7638993119611605146
+--- !u!114 &5756258864908256894
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -92,9 +92,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 5233473764482463533}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45d532f01303d464fb11621656b4d14c, type: 3}
+  m_Script: {fileID: 11500000, guid: ef722c55ccae50c4d85fc5d3b5e43a89, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BlockController
+  m_EditorClassIdentifier: Assembly-CSharp::TowerController
   gravityMultiplier: 4
   scoreValue: 20
   perfectOverlap: 90
@@ -153,6 +153,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 066443fae8de9794e963912777ecdcd5, type: 3}
       propertyPath: m_Name
       value: Visual
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 066443fae8de9794e963912777ecdcd5, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

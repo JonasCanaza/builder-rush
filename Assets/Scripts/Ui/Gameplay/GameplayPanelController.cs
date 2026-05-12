@@ -6,17 +6,17 @@ public class GameplayPanelController : MonoBehaviour
     [Header("Panel Settings")]
     [SerializeField] private TMP_Text scoreText;
     [SerializeField] private TMP_Text perfectPlacementsText;
-    [SerializeField] private TMP_Text blocksPlacedText;
+    [SerializeField] private TMP_Text towersPlacedsText;
 
     private void Start()
     {
         GameManager.Instance.OnScoreChanged += UpdateScore;
         GameManager.Instance.OnPerfectPlacementsChanged += UpdatePerfectPlacements;
-        GameManager.Instance.OnBlocksPlacedChanged += UpdateBlocksPlaced;
+        GameManager.Instance.OnTowersPlacedChanged += UpdateTowersPlaced;
 
         UpdateScore(GameManager.Instance.Score);
         UpdatePerfectPlacements(GameManager.Instance.PerfectPlacements);
-        UpdateBlocksPlaced(GameManager.Instance.BlocksPlaced);
+        UpdateTowersPlaced(GameManager.Instance.TowersPlaced);
     }
 
     private void OnDestroy()
@@ -25,7 +25,7 @@ public class GameplayPanelController : MonoBehaviour
         {
             GameManager.Instance.OnScoreChanged -= UpdateScore;
             GameManager.Instance.OnPerfectPlacementsChanged -= UpdatePerfectPlacements;
-            GameManager.Instance.OnBlocksPlacedChanged -= UpdateBlocksPlaced;
+            GameManager.Instance.OnTowersPlacedChanged -= UpdateTowersPlaced;
         }
     }
 
@@ -39,8 +39,8 @@ public class GameplayPanelController : MonoBehaviour
         perfectPlacementsText.text = $"Perfects: {amount}";
     }
 
-    private void UpdateBlocksPlaced(int amount)
+    private void UpdateTowersPlaced(int amount)
     {
-        blocksPlacedText.text = $"Blocks: {amount}";
+        towersPlacedsText.text = $"Towers: {amount}";
     }
 }

@@ -7,13 +7,13 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
 
     public event Action<int> OnScoreChanged;
     public event Action<int> OnPerfectPlacementsChanged;
-    public event Action<int> OnBlocksPlacedChanged;
-    public event Action OnBlockPlaced;
+    public event Action<int> OnTowersPlacedChanged;
+    public event Action OnTowerPlaced;
 
     public bool IsGameOver { get; private set; }
     public int Score { get; private set; }
     public int PerfectPlacements { get; private set; }
-    public int BlocksPlaced { get; private set; }
+    public int TowersPlaced { get; private set; }
 
     protected override void Awake()
     {
@@ -41,11 +41,11 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         OnPerfectPlacementsChanged?.Invoke(PerfectPlacements);
     }
 
-    public void RegisterBlock()
+    public void RegisterTower()
     {
-        BlocksPlaced++;
-        OnBlocksPlacedChanged?.Invoke(BlocksPlaced);
-        OnBlockPlaced?.Invoke();
+        TowersPlaced++;
+        OnTowersPlacedChanged?.Invoke(TowersPlaced);
+        OnTowerPlaced?.Invoke();
     }
 
     public void GameOver()
@@ -68,10 +68,10 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
 
         Score = 0;
         PerfectPlacements = 0;
-        BlocksPlaced = 0;
+        TowersPlaced = 0;
 
         OnScoreChanged?.Invoke(Score);
         OnPerfectPlacementsChanged?.Invoke(PerfectPlacements);
-        OnBlocksPlacedChanged?.Invoke(BlocksPlaced);
+        OnTowersPlacedChanged?.Invoke(TowersPlaced);
     }
 }

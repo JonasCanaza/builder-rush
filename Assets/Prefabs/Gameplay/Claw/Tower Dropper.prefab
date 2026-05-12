@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 1899199473562729615}
   - component: {fileID: 6443987098964454914}
   m_Layer: 0
-  m_Name: Block Dropper
+  m_Name: Tower Dropper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,9 +77,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48e43d58b14ea7f40aad6776dc71cd11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BlockDropperController
-  blockPrefab: {fileID: -7638993119611605146, guid: dcbabb423d5e56e42ad4c7f8481a75ef, type: 3}
+  towerPrefab: {fileID: 5756258864908256894, guid: dcbabb423d5e56e42ad4c7f8481a75ef, type: 3}
   spawnPoint: {fileID: 27024773359256725}
-  blocksContainer: {fileID: 0}
+  towerContainer: {fileID: 0}
   movementSpeed: 6
   movementLimitX: 6
   launchSfx: {fileID: 8300000, guid: e053153acc5865046b5b236a3415973c, type: 3}

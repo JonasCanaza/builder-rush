@@ -849,7 +849,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameplayPanelController
   scoreText: {fileID: 196463035}
   perfectPlacementsText: {fileID: 470340763}
-  blocksPlacedText: {fileID: 1636417642}
+  towersPlacedsText: {fileID: 1636417642}
 --- !u!1 &196463033
 GameObject:
   m_ObjectHideFlags: 0
@@ -2588,7 +2588,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5289246e8ce6bd408871c7e1a7f7625, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameplayRootController
-  blocksBeforeMove: 2
+  towersBeforeMove: 2
   moveHeight: 2
   moveSpeed: 5
 --- !u!1001 &594417415
@@ -6372,7 +6372,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1623667579}
   m_Layer: 0
-  m_Name: Blocks Container
+  m_Name: Tower Container
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6405,7 +6405,7 @@ GameObject:
   - component: {fileID: 1636417643}
   - component: {fileID: 1636417642}
   m_Layer: 5
-  m_Name: Blocks Placed Text
+  m_Name: Towers Placeds Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6450,9 +6450,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Blocks
-
-'
+  m_text: Towers
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -9425,10 +9423,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5596815182068732675, guid: 73b350a549be10a4d8748a70745bc41c, type: 3}
       propertyPath: m_Name
-      value: Block Dropper
+      value: Tower Dropper
       objectReference: {fileID: 0}
     - target: {fileID: 6443987098964454914, guid: 73b350a549be10a4d8748a70745bc41c, type: 3}
-      propertyPath: blocksContainer
+      propertyPath: towerContainer
       value: 
       objectReference: {fileID: 1623667579}
     - target: {fileID: 6443987098964454914, guid: 73b350a549be10a4d8748a70745bc41c, type: 3}

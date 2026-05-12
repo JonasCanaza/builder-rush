@@ -1,12 +1,12 @@
 using UnityEngine;
 
-public class BlockDropperController : MonoBehaviour
+public class TowerDropperController : MonoBehaviour
 {
-    [Header("Block Settings")]
-    [SerializeField] private BlockController blockPrefab;
+    [Header("Tower Settings")]
+    [SerializeField] private TowerController towerPrefab;
     [SerializeField] private Transform spawnPoint;
-    [SerializeField] private Transform blocksContainer;
-    private BlockController currentBlock;
+    [SerializeField] private Transform towerContainer;
+    private TowerController currentTower;
 
     [Header("Movement Settings")]
     [SerializeField] private float movementSpeed = 6.0f;
@@ -21,9 +21,9 @@ public class BlockDropperController : MonoBehaviour
 
     private void Start()
     {
-        SpawnBlock();
+        SpawnTower();
 
-        GameManager.Instance.OnBlockPlaced += SpawnBlock;
+        GameManager.Instance.OnTowerPlaced += SpawnTower;
     }
 
     private void Update()
@@ -35,7 +35,7 @@ public class BlockDropperController : MonoBehaviour
             ReadGameplayInput();
             Movement();
 
-            FollowCurrentBlock();
+            FollowCurrentTower();
         }
     }
 
@@ -43,7 +43,7 @@ public class BlockDropperController : MonoBehaviour
     {
         if (GameManager.Instance)
         {
-            GameManager.Instance.OnBlockPlaced -= SpawnBlock;
+            GameManager.Instance.OnTowerPlaced -= SpawnTower;
         }
     }
 
@@ -59,9 +59,9 @@ public class BlockDropperController : MonoBehaviour
     private void ReadGameplayInput()
     {
         // DROP
-        if (Input.GetKeyDown(KeyCode.Space) && currentBlock)
+        if (Input.GetKeyDown(KeyCode.Space) && currentTower)
         {
-            ReleaseCurrentBlock();
+            ReleaseCurrentTower();
         }
     }
 
@@ -79,24 +79,24 @@ public class BlockDropperController : MonoBehaviour
         }
     }
 
-    private void FollowCurrentBlock()
+    private void FollowCurrentTower()
     {
-        if (currentBlock)
+        if (currentTower)
         {
-            currentBlock.transform.position = spawnPoint.position;
+            currentTower.transform.position = spawnPoint.position;
         }
     }
 
-    private void SpawnBlock()
+    private void SpawnTower()
     {
-        currentBlock = Instantiate(blockPrefab, spawnPoint.position, Quaternion.identity, blocksContainer);
-        currentBlock.AttachToDropper();
+        currentTower = Instantiate(towerPrefab, spawnPoint.position, Quaternion.identity, towerContainer);
+        currentTower.AttachToDropper();
     }
 
-    private void ReleaseCurrentBlock()
+    private void ReleaseCurrentTower()
     {
-        currentBlock.Release();
-        currentBlock = null;
+        currentTower.Release();
+        currentTower = null;
 
         AudioManager.Instance.PlaySFX(launchSfx);
     }
