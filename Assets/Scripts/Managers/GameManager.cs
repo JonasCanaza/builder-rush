@@ -1,3 +1,4 @@
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using System;
 
@@ -33,6 +34,15 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     {
         Score += points;
         OnScoreChanged?.Invoke(Score);
+
+        if (Score > PlayerData.Score)
+        {
+            PlayerData.Score = Score;
+
+#if UNITY_EDITOR
+            Debug.Log($"Highscore: {PlayerData.Score}");
+#endif
+        }
     }
 
     public void AddPerfectPlacement()
@@ -59,7 +69,10 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        ResetScore();
+        if (scene.name == GAMEPLAY_SCENE)
+        {
+            ResetScore();
+        }
     }
 
     private void ResetScore()
