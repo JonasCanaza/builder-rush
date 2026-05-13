@@ -15,9 +15,6 @@ public class SettingsPanelController : MonoBehaviour
     [SerializeField] private Slider sliderMusic;
     [SerializeField] private Slider sliderSfx;
     [SerializeField] private AudioMixer audioMixer;
-    private const string MASTER_VOLUME_KEY = "MasterVolume";
-    private const string MUSIC_VOLUME_KEY = "MusicVolume";
-    private const string SFX_VOLUME_KEY = "SfxVolume";
     private const float MIN_VOLUME = 0.0001f;
     private const float MAX_VOLUME = 1.0f;
     private const float DECIBEL_MULTIPLIER = 20.0f;
@@ -29,6 +26,13 @@ public class SettingsPanelController : MonoBehaviour
         sliderMaster.onValueChanged.AddListener(OnMasterVolumeChanged);
         sliderMusic.onValueChanged.AddListener(OnMusicVolumeChanged);
         sliderSfx.onValueChanged.AddListener(OnSfxVolumeChanged);
+    }
+
+    private void Start()
+    {
+        sliderMaster.value = AudioData.MasterVolume;
+        sliderMusic.value = AudioData.MusicVolume;
+        sliderSfx.value = AudioData.SfxVolume;
     }
 
     private void OnDestroy()
@@ -47,17 +51,20 @@ public class SettingsPanelController : MonoBehaviour
 
     private void OnMasterVolumeChanged(float currentValue)
     {
-        SetVolume(MASTER_VOLUME_KEY, currentValue);
+        SetVolume(AudioData.KEY_MASTER_VOLUME, currentValue);
+        AudioData.MasterVolume = currentValue;
     }
 
     private void OnMusicVolumeChanged(float currentValue)
     {
-        SetVolume(MUSIC_VOLUME_KEY, currentValue);
+        SetVolume(AudioData.KEY_MUSIC_VOLUME, currentValue);
+        AudioData.MusicVolume = currentValue;
     }
 
     private void OnSfxVolumeChanged(float currentValue)
     {
-        SetVolume(SFX_VOLUME_KEY, currentValue);
+        SetVolume(AudioData.KEY_SFX_VOLUME, currentValue);
+        AudioData.SfxVolume = currentValue;
     }
 
     private void SetVolume(string key, float value)
