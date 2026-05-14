@@ -117,9 +117,11 @@ public class TowerController : MonoBehaviour
         {
             GameManager.Instance.AddScore(scoreValue);
             AudioManager.Instance.PlaySFX(goodPlacedSfx);
+            GameManager.Instance.BreakStreak();
         }
         else
         {
+            GameManager.Instance.BreakStreak();
             rb.constraints = RigidbodyConstraints.FreezePositionZ;
             rb.isKinematic = false;
             isValidPlacement = false;

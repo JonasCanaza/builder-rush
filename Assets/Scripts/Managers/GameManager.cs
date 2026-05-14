@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
 
     public bool IsGameOver { get; private set; }
     public int Score { get; private set; }
-    public int PerfectPlacements { get; private set; }
+    public int PerfectStreak { get; private set; }
     public int TowersPlaced { get; private set; }
 
     protected override void Awake()
@@ -47,8 +47,8 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
 
     public void AddPerfectPlacement()
     {
-        PerfectPlacements++;
-        OnPerfectPlacementsChanged?.Invoke(PerfectPlacements);
+        PerfectStreak++;
+        OnPerfectPlacementsChanged?.Invoke(PerfectStreak);
     }
 
     public void RegisterTower()
@@ -67,6 +67,12 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         }
     }
 
+    public void BreakStreak()
+    {
+        PerfectStreak = 0;
+        OnPerfectPlacementsChanged?.Invoke(PerfectStreak);
+    }
+
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         if (scene.name == GAMEPLAY_SCENE)
@@ -80,11 +86,11 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         IsGameOver = false;
 
         Score = 0;
-        PerfectPlacements = 0;
+        PerfectStreak = 0;
         TowersPlaced = 0;
 
         OnScoreChanged?.Invoke(Score);
-        OnPerfectPlacementsChanged?.Invoke(PerfectPlacements);
+        OnPerfectPlacementsChanged?.Invoke(PerfectStreak);
         OnTowersPlacedChanged?.Invoke(TowersPlaced);
     }
 }

@@ -15,7 +15,7 @@ public class GameplayPanelController : MonoBehaviour
         GameManager.Instance.OnTowersPlacedChanged += UpdateTowersPlaced;
 
         UpdateScore(GameManager.Instance.Score);
-        UpdatePerfectPlacements(GameManager.Instance.PerfectPlacements);
+        UpdatePerfectPlacements(GameManager.Instance.PerfectStreak);
         UpdateTowersPlaced(GameManager.Instance.TowersPlaced);
     }
 
