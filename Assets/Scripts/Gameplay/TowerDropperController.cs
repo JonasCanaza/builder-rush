@@ -2,19 +2,16 @@ using UnityEngine;
 
 public class TowerDropperController : MonoBehaviour
 {
+    [Header("Data Settings")]
+    [SerializeField] private TowerDropperSetupDataSO setupData;
+    [SerializeField] private TowerDropperReferencesSO referencesData;
+
     [Header("Tower Settings")]
-    [SerializeField] private TowerController towerPrefab;
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private Transform towerContainer;
     private TowerController currentTower;
 
-    [Header("Movement Settings")]
-    [SerializeField] private float movementSpeed = 6.0f;
-    [SerializeField] private float movementLimitX = 6.0f;
     private float direction = 1.0f;
-
-    [Header("Clips Settings")]
-    [SerializeField] private AudioClip launchSfx;
 
     [Header("Pause Settings")]
     [SerializeField] private GameplayUIManager gameplayUIManager;
@@ -67,12 +64,12 @@ public class TowerDropperController : MonoBehaviour
 
     private void Movement()
     {
-        transform.position += Vector3.right * (direction * movementSpeed * Time.deltaTime);
+        transform.position += Vector3.right * (direction * setupData.MovementSpeed * Time.deltaTime);
 
-        if (Mathf.Abs(transform.position.x) >= movementLimitX)
+        if (Mathf.Abs(transform.position.x) >= setupData.MovementLimitX)
         {
             Vector3 newPosition = transform.position;
-            newPosition.x = Mathf.Sign(newPosition.x) * movementLimitX;
+            newPosition.x = Mathf.Sign(newPosition.x) * setupData.MovementLimitX;
             transform.position = newPosition;
 
             direction *= -1;
@@ -89,7 +86,7 @@ public class TowerDropperController : MonoBehaviour
 
     private void SpawnTower()
     {
-        currentTower = Instantiate(towerPrefab, spawnPoint.position, Quaternion.identity, towerContainer);
+        currentTower = Instantiate(referencesData.TowerPrefab, spawnPoint.position, Quaternion.identity, towerContainer);
         currentTower.AttachToDropper();
     }
 
@@ -98,6 +95,6 @@ public class TowerDropperController : MonoBehaviour
         currentTower.Release();
         currentTower = null;
 
-        AudioManager.Instance.PlaySFX(launchSfx);
+        AudioManager.Instance.PlaySFX(referencesData.LaunchSfx);
     }
 }

@@ -9483,6 +9483,14 @@ PrefabInstance:
       value: Tower Dropper
       objectReference: {fileID: 0}
     - target: {fileID: 6443987098964454914, guid: 73b350a549be10a4d8748a70745bc41c, type: 3}
+      propertyPath: setupData
+      value: 
+      objectReference: {fileID: 11400000, guid: 522d61de2f8b53843a078a99eb10f5ea, type: 2}
+    - target: {fileID: 6443987098964454914, guid: 73b350a549be10a4d8748a70745bc41c, type: 3}
+      propertyPath: referencesData
+      value: 
+      objectReference: {fileID: 11400000, guid: 9e45c5bdc8367894388f118bb131bb7a, type: 2}
+    - target: {fileID: 6443987098964454914, guid: 73b350a549be10a4d8748a70745bc41c, type: 3}
       propertyPath: towerContainer
       value: 
       objectReference: {fileID: 1623667579}
