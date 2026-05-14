@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Tower Dropper References", menuName = "Scriptable Objects/Tower Dropper References")]
+[CreateAssetMenu(fileName = "Tower Dropper References", menuName = "Scriptable Objects/Tower Dropper/Tower Dropper References")]
 public class TowerDropperReferencesSO : ScriptableObject
 {
     [field: Header("Prefabs")]

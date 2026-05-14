@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Tower Dropper Setup Data", menuName = "Scriptable Objects/Tower Dropper Setup Data")]
+[CreateAssetMenu(fileName = "Tower Dropper Setup Data", menuName = "Scriptable Objects/Tower Dropper/Tower Dropper Setup Data")]
 public class TowerDropperSetupDataSO : ScriptableObject
 {
     [field: Header("Movement Settings")]

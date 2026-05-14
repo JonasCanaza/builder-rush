@@ -5,25 +5,17 @@ using UnityEngine;
 
 public class TowerController : MonoBehaviour
 {
+    [Header("Data Settings")]
+    [SerializeField] private TowerSetupDataSO setupData;
+    [SerializeField] private TowerReferencesSO referencesData;
+
     private const float GRAVITY_MULTIPLIER_OFFSET = 1.0f;
     private const float MAX_PERCENTAGE = 100.0f;
 
-    [Header("Physics Settings")]
-    [SerializeField] private float gravityMultiplier = 4.0f;
     private Rigidbody rb;
     private Collider col;
     private bool isPlaced = false;
     private bool attachedToDropper = true;
-
-    [Header("Tower Settings")]
-    [SerializeField] private int scoreValue = 20;
-    [SerializeField] private float perfectOverlap = 90.0f;
-    [SerializeField] private float goodOverlap = 45.0f;
-
-    [Header("Clips Settings")]
-    [SerializeField] private AudioClip collisionSfx;
-    [SerializeField] private AudioClip goodPlacedSfx;
-    [SerializeField] private AudioClip perfectPlacedSfx;
 
     private void Awake()
     {
@@ -44,13 +36,13 @@ public class TowerController : MonoBehaviour
         if (!isPlaced && !GameManager.Instance.IsGameOver)
         {
             PlaceTower(collision);
-            AudioManager.Instance.PlaySFX(collisionSfx);
+            AudioManager.Instance.PlaySFX(referencesData.CollisionSfx);
 
             if (GameManager.Instance.TowersPlaced == 0)
             {
-                GameManager.Instance.AddScore(scoreValue);
+                GameManager.Instance.AddScore(setupData.ScoreValue);
                 GameManager.Instance.RegisterTower();
-                AudioManager.Instance.PlaySFX(goodPlacedSfx);
+                AudioManager.Instance.PlaySFX(referencesData.GoodPlacedSfx);
             }
             else
             {
@@ -73,7 +65,7 @@ public class TowerController : MonoBehaviour
 
     private void ApplyExtraGravity()
     {
-        rb.AddForce(Physics.gravity * (gravityMultiplier - GRAVITY_MULTIPLIER_OFFSET), ForceMode.Acceleration);
+        rb.AddForce(Physics.gravity * (setupData.GravityMultiplier - GRAVITY_MULTIPLIER_OFFSET), ForceMode.Acceleration);
     }
 
     private void PlaceTower(Collision collision)
@@ -107,16 +99,16 @@ public class TowerController : MonoBehaviour
         float overlapPercentage = GetOverlapPercentage(collision);
         bool isValidPlacement = true;
 
-        if (overlapPercentage > perfectOverlap)
+        if (overlapPercentage > setupData.PerfectOverlap)
         {
-            GameManager.Instance.AddScore(scoreValue * 2);
+            GameManager.Instance.AddScore(setupData.ScoreValue * 2);
             GameManager.Instance.AddPerfectPlacement();
-            AudioManager.Instance.PlaySFX(perfectPlacedSfx);
+            AudioManager.Instance.PlaySFX(referencesData.PerfectPlacedSfx);
         }
-        else if (overlapPercentage > goodOverlap)
+        else if (overlapPercentage > setupData.GoodOverlap)
         {
-            GameManager.Instance.AddScore(scoreValue);
-            AudioManager.Instance.PlaySFX(goodPlacedSfx);
+            GameManager.Instance.AddScore(setupData.ScoreValue);
+            AudioManager.Instance.PlaySFX(referencesData.GoodPlacedSfx);
             GameManager.Instance.BreakStreak();
         }
         else

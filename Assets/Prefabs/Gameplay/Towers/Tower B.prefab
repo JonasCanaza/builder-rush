@@ -95,13 +95,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef722c55ccae50c4d85fc5d3b5e43a89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerController
-  gravityMultiplier: 4
-  scoreValue: 20
-  perfectOverlap: 90
-  goodOverlap: 45
-  collisionSfx: {fileID: 8300000, guid: 52dfe4c231505c444aca3774c7e76b95, type: 3}
-  goodPlacedSfx: {fileID: 8300000, guid: 4596990f26d969947adca3c34fb71d21, type: 3}
-  perfectPlacedSfx: {fileID: 8300000, guid: a1ddab9925c69d04b8a57f7bed496d5d, type: 3}
+  setupData: {fileID: 11400000, guid: 60341cc439286e14d8f8a23e9edff6d5, type: 2}
+  referencesData: {fileID: 11400000, guid: 2d82babe3f368aa47a5aeb549e6b21f0, type: 2}
 --- !u!1001 &2878712099695285560
 PrefabInstance:
   m_ObjectHideFlags: 0

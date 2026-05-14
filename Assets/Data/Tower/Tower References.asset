@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad8aa67aff8134d4d927fa8d9718d2ce, type: 3}
+  m_Name: Tower References
+  m_EditorClassIdentifier: Assembly-CSharp::TowerReferencesSO
+  <CollisionSfx>k__BackingField: {fileID: 8300000, guid: 52dfe4c231505c444aca3774c7e76b95, type: 3}
+  <GoodPlacedSfx>k__BackingField: {fileID: 8300000, guid: 4596990f26d969947adca3c34fb71d21, type: 3}
+  <PerfectPlacedSfx>k__BackingField: {fileID: 8300000, guid: a1ddab9925c69d04b8a57f7bed496d5d, type: 3}
