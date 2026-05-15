@@ -2140,6 +2140,10 @@ PrefabInstance:
       propertyPath: m_text
       value: Settings
       objectReference: {fileID: 0}
+    - target: {fileID: 5680253965065955516, guid: 9e30d07602a1f77419f670b4c20f7b28, type: 3}
+      propertyPath: m_fontSize
+      value: 60
+      objectReference: {fileID: 0}
     - target: {fileID: 7396439743246955911, guid: 9e30d07602a1f77419f670b4c20f7b28, type: 3}
       propertyPath: m_Name
       value: Button Settings
