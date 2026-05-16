@@ -4,17 +4,27 @@ using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(Button))]
 
-public class UIButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler
+public class UIButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     [Header("Audio Settings")]
     [SerializeField] private AudioClip clickClip;
     [SerializeField] private AudioClip hoverClip;
 
-    private Button btn;
+    [Header("Animation Settings")]
+    [SerializeField] private float hoverScale = 1.15f;
+    [SerializeField] private float scaleSpeed = 20.0f;
+    private Vector3 defaultScale;
+    private Vector3 targetScale;
 
-    private void Awake()
+    private void Start()
     {
-        btn = GetComponent<Button>();
+        defaultScale = transform.localScale;
+        targetScale = defaultScale;
+    }
+
+    private void Update()
+    {
+        transform.localScale = Vector3.Lerp(transform.localScale, targetScale, scaleSpeed * Time.unscaledDeltaTime);
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -24,6 +34,13 @@ public class UIButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        targetScale = defaultScale * hoverScale;
+
         AudioManager.Instance.PlaySFX(hoverClip);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        targetScale = defaultScale;
     }
 }

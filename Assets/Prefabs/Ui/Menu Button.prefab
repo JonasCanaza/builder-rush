@@ -273,3 +273,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UIButton
   clickClip: {fileID: 8300000, guid: f00bf941c87a16740a2ed8ce0a2ebd8a, type: 3}
   hoverClip: {fileID: 8300000, guid: b7a5b112635bf2349886d0848ca8aea3, type: 3}
+  hoverScale: 1.15
+  scaleSpeed: 20
