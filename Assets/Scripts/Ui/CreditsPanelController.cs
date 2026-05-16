@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CreditsPanelController : MonoBehaviour
+public class CreditsPanelController : UIPanel
 {
     [Header("Scroll View Settings")]
     [SerializeField] private Scrollbar scrollBar;
@@ -10,8 +10,10 @@ public class CreditsPanelController : MonoBehaviour
     [SerializeField] private Button backButton;
     [SerializeField] private MainMenuManager mainMenuManager;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         backButton.onClick.AddListener(OnButtonBackClicked);
     }
 

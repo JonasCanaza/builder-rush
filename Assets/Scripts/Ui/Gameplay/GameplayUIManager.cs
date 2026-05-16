@@ -41,28 +41,28 @@ public class GameplayUIManager : MonoBehaviour
 
     public void ShowPausePanel()
     {
-        pausePanel.gameObject.SetActive(true);
-        settingsPanel.gameObject.SetActive(false);
+        pausePanel.Show();
+        settingsPanel.Hide();
     }
 
     public void ShowSettingsPanel()
     {
-        pausePanel.gameObject.SetActive(false);
-        settingsPanel.gameObject.SetActive(true);
+        pausePanel.Hide();
+        settingsPanel.Show();
     }
 
     private void PauseGame()
     {
         AudioManager.Instance.PauseMusic();
         IsPaused = true;
-        pausePanel.gameObject.SetActive(true);
+        pausePanel.Show();
         Time.timeScale = 0.0f;
     }
 
     private void ResumeGame()
     {
         IsPaused = false;
-        pausePanel.gameObject.SetActive(false);
+        pausePanel.Hide();
         Time.timeScale = 1.0f;
         AudioManager.Instance.ResumeMusic();
     }
@@ -70,7 +70,7 @@ public class GameplayUIManager : MonoBehaviour
     private void BackToMenu()
     {
         IsPaused = false;
-        pausePanel.gameObject.SetActive(false);
+        pausePanel.Hide();
         Time.timeScale = 1.0f;
         AudioManager.Instance.StopMusic();
         SceneManager.LoadScene(AudioManager.MainMenu);

@@ -19,22 +19,22 @@ public class MainMenuManager : MonoBehaviour
 
     public void ShowMainPanel()
     {
-        mainPanel.gameObject.SetActive(true);
-        settingsPanel.gameObject.SetActive(false);
-        creditsPanel.gameObject.SetActive(false);
+        mainPanel.Show();
+        settingsPanel.Hide();
+        creditsPanel.Hide();
     }
 
     public void ShowSettingsPanel()
     {
-        mainPanel.gameObject.SetActive(false);
-        settingsPanel.gameObject.SetActive(true);
-        creditsPanel.gameObject.SetActive(false);
+        mainPanel.Hide();
+        settingsPanel.Show();
+        creditsPanel.Hide();
     }
 
     public void ShowCreditsPanel()
     {
-        mainPanel.gameObject.SetActive(false);
-        settingsPanel.gameObject.SetActive(false);
-        creditsPanel.gameObject.SetActive(true);
+        mainPanel.Hide();
+        settingsPanel.Hide();
+        creditsPanel.Show();
     }
 }

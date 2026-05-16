@@ -1,7 +1,7 @@
 using UnityEngine;
 using TMPro;
 
-public class GameplayPanelController : MonoBehaviour
+public class GameplayPanelController : UIPanel
 {
     [Header("Panel Settings")]
     [SerializeField] private TMP_Text scoreText;

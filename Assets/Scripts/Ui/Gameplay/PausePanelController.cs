@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 
-public class PausePanelController : MonoBehaviour
+public class PausePanelController : UIPanel
 {
     public event Action OnResumeButtonClicked;
     public event Action OnSettingsButtonClicked;
@@ -13,8 +13,10 @@ public class PausePanelController : MonoBehaviour
     [SerializeField] private Button buttonSettings;
     [SerializeField] private Button buttonExit;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         buttonResume.onClick.AddListener(OnButtonResumeClicked);
         buttonSettings.onClick.AddListener(OnButtonSettingsClicked);
         buttonExit.onClick.AddListener(OnButtonExitClicked);

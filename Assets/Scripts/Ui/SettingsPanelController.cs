@@ -3,7 +3,7 @@ using UnityEngine.Audio;
 using UnityEngine.UI;
 using System;
 
-public class SettingsPanelController : MonoBehaviour
+public class SettingsPanelController : UIPanel
 {
     public event Action OnBackPressed;
 
@@ -19,8 +19,10 @@ public class SettingsPanelController : MonoBehaviour
     private const float MAX_VOLUME = 1.0f;
     private const float DECIBEL_MULTIPLIER = 20.0f;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         backButton.onClick.AddListener(OnButtonBackClicked);
 
         sliderMaster.onValueChanged.AddListener(OnMasterVolumeChanged);

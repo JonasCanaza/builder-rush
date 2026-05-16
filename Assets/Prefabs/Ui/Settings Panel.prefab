@@ -505,6 +505,7 @@ GameObject:
   - component: {fileID: 700868448480554800}
   - component: {fileID: 5077938672806807498}
   - component: {fileID: 6431396411472184065}
+  - component: {fileID: 6405121750586937152}
   m_Layer: 5
   m_Name: Settings Panel
   m_TagString: Untagged
@@ -558,6 +559,18 @@ MonoBehaviour:
   sliderMusic: {fileID: 4053162922358147251}
   sliderSfx: {fileID: 3127939669715230355}
   audioMixer: {fileID: 24100000, guid: 013c1e21f8888a745a0c0ede92ad6388, type: 2}
+--- !u!225 &6405121750586937152
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7821194994258007570}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1001 &1937156086798883501
 PrefabInstance:
   m_ObjectHideFlags: 0

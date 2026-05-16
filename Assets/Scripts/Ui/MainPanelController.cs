@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class MainPanelController : MonoBehaviour
+public class MainPanelController : UIPanel
 {
     [Header("References Settings")]
     [SerializeField] private Button buttonPlay;
@@ -11,8 +11,10 @@ public class MainPanelController : MonoBehaviour
     [SerializeField] private Button buttonExit;
     [SerializeField] private MainMenuManager mainMenuManager;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         buttonPlay.onClick.AddListener(OnButtonPlayClicked);
         buttonSettings.onClick.AddListener(OnButtonSettingsClicked);
         buttonCredits.onClick.AddListener(OnButtonCreditsClicked);
