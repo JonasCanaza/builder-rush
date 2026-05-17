@@ -46,10 +46,6 @@ public class MainPanelController : UIPanel
 
     private void OnButtonExitClicked()
     {
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#else
-        Application.Quit();
-#endif
+        mainMenuManager.ShowExitPopup();
     }
 }

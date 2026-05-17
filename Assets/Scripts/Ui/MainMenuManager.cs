@@ -7,6 +7,9 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private SettingsPanelController settingsPanel;
     [SerializeField] private CreditsPanelController creditsPanel;
 
+    [Header("Popups References")]
+    [SerializeField] private ExitGamePopup exitGamePopup;
+
     private void Awake()
     {
         settingsPanel.OnBackPressed += ShowMainPanel;
@@ -36,5 +39,10 @@ public class MainMenuManager : MonoBehaviour
         mainPanel.Hide();
         settingsPanel.Hide();
         creditsPanel.Show();
+    }
+
+    public void ShowExitPopup()
+    {
+        exitGamePopup.Show();
     }
 }
