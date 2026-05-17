@@ -12,6 +12,7 @@ public class GameplayUIManager : MonoBehaviour
     private void Start()
     {
         pausePanel.OnResumeButtonClicked += ResumeGame;
+        pausePanel.OnRestartButtonClicked += RestartLevel;
         pausePanel.OnSettingsButtonClicked += ShowSettingsPanel;
         pausePanel.OnExitButtonClicked += BackToMenu;
 
@@ -21,6 +22,7 @@ public class GameplayUIManager : MonoBehaviour
     private void OnDestroy()
     {
         pausePanel.OnResumeButtonClicked -= ResumeGame;
+        pausePanel.OnRestartButtonClicked -= RestartLevel;
         pausePanel.OnSettingsButtonClicked -= ShowSettingsPanel;
         pausePanel.OnExitButtonClicked -= BackToMenu;
 
@@ -39,13 +41,13 @@ public class GameplayUIManager : MonoBehaviour
         }
     }
 
-    public void ShowPausePanel()
+    private void ShowPausePanel()
     {
         pausePanel.Show();
         settingsPanel.Hide();
     }
 
-    public void ShowSettingsPanel()
+    private void ShowSettingsPanel()
     {
         pausePanel.Hide();
         settingsPanel.Show();
@@ -65,6 +67,13 @@ public class GameplayUIManager : MonoBehaviour
         pausePanel.Hide();
         Time.timeScale = 1.0f;
         AudioManager.Instance.ResumeMusic();
+    }
+
+    private void RestartLevel()
+    {
+        Time.timeScale = 1.0f;
+        AudioManager.Instance.StopMusic();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     private void BackToMenu()

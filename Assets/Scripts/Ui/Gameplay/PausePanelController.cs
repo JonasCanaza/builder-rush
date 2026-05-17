@@ -5,11 +5,13 @@ using System;
 public class PausePanelController : UIPanel
 {
     public event Action OnResumeButtonClicked;
+    public event Action OnRestartButtonClicked;
     public event Action OnSettingsButtonClicked;
     public event Action OnExitButtonClicked;
 
     [Header("Button Settings")]
     [SerializeField] private Button buttonResume;
+    [SerializeField] private Button buttonRestart;
     [SerializeField] private Button buttonSettings;
     [SerializeField] private Button buttonExit;
 
@@ -18,6 +20,7 @@ public class PausePanelController : UIPanel
         base.Awake();
 
         buttonResume.onClick.AddListener(OnButtonResumeClicked);
+        buttonRestart.onClick.AddListener(OnButtonRestartClicked);
         buttonSettings.onClick.AddListener(OnButtonSettingsClicked);
         buttonExit.onClick.AddListener(OnButtonExitClicked);
     }
@@ -25,6 +28,7 @@ public class PausePanelController : UIPanel
     private void OnDestroy()
     {
         buttonResume.onClick.RemoveAllListeners();
+        buttonRestart.onClick.RemoveAllListeners();
         buttonSettings.onClick.RemoveAllListeners();
         buttonExit.onClick.RemoveAllListeners();
     }
@@ -32,6 +36,11 @@ public class PausePanelController : UIPanel
     private void OnButtonResumeClicked()
     {
         OnResumeButtonClicked?.Invoke();
+    }
+
+    private void OnButtonRestartClicked()
+    {
+        OnRestartButtonClicked?.Invoke();
     }
 
     private void OnButtonSettingsClicked()

@@ -11389,6 +11389,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PausePanelController
   buttonResume: {fileID: 36886031}
+  buttonRestart: {fileID: 1975288839}
   buttonSettings: {fileID: 682517521}
   buttonExit: {fileID: 1642963757}
 --- !u!225 &1682263726
@@ -13765,6 +13766,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3203705022718416175, guid: 9e30d07602a1f77419f670b4c20f7b28, type: 3}
   m_PrefabInstance: {fileID: 1975288837}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1975288839 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6806745388041808297, guid: 9e30d07602a1f77419f670b4c20f7b28, type: 3}
+  m_PrefabInstance: {fileID: 1975288837}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!4 &1977422607 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 49a0d8590889ed64a86b734fc36d2faa, type: 3}
