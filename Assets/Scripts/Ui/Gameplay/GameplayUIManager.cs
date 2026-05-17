@@ -9,14 +9,19 @@ public class GameplayUIManager : MonoBehaviour
     [SerializeField] private PausePanelController pausePanel;
     [SerializeField] private SettingsPanelController settingsPanel;
 
+    [Header("Popups References")]
+    [SerializeField] private ExitLevelPopup exitGamePopup;
+
     private void Start()
     {
         pausePanel.OnResumeButtonClicked += ResumeGame;
         pausePanel.OnRestartButtonClicked += RestartLevel;
         pausePanel.OnSettingsButtonClicked += ShowSettingsPanel;
-        pausePanel.OnExitButtonClicked += BackToMenu;
+        pausePanel.OnExitButtonClicked += ShowExitPopup;
 
         settingsPanel.OnBackPressed += ShowPausePanel;
+
+        exitGamePopup.OnExitConfirmed += BackToMenu;
     }
 
     private void OnDestroy()
@@ -24,9 +29,11 @@ public class GameplayUIManager : MonoBehaviour
         pausePanel.OnResumeButtonClicked -= ResumeGame;
         pausePanel.OnRestartButtonClicked -= RestartLevel;
         pausePanel.OnSettingsButtonClicked -= ShowSettingsPanel;
-        pausePanel.OnExitButtonClicked -= BackToMenu;
+        pausePanel.OnExitButtonClicked -= ShowExitPopup;
 
         settingsPanel.OnBackPressed -= ShowPausePanel;
+
+        exitGamePopup.OnExitConfirmed -= BackToMenu;
     }
 
     public void ToggleShowPausePanel()
@@ -74,6 +81,11 @@ public class GameplayUIManager : MonoBehaviour
         Time.timeScale = 1.0f;
         AudioManager.Instance.StopMusic();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    private void ShowExitPopup()
+    {
+        exitGamePopup.Show();
     }
 
     private void BackToMenu()
