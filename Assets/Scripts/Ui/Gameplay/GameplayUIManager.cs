@@ -10,16 +10,19 @@ public class GameplayUIManager : MonoBehaviour
     [SerializeField] private SettingsPanelController settingsPanel;
 
     [Header("Popups References")]
+    [SerializeField] private RestartLevelPopup restartLevelPopup;
     [SerializeField] private ExitLevelPopup exitGamePopup;
 
     private void Start()
     {
         pausePanel.OnResumeButtonClicked += ResumeGame;
-        pausePanel.OnRestartButtonClicked += RestartLevel;
+        pausePanel.OnRestartButtonClicked += ShowRestartLevelPopup;
         pausePanel.OnSettingsButtonClicked += ShowSettingsPanel;
-        pausePanel.OnExitButtonClicked += ShowExitPopup;
+        pausePanel.OnExitButtonClicked += ShowExitGamePopup;
 
         settingsPanel.OnBackPressed += ShowPausePanel;
+
+        restartLevelPopup.OnRestartConfirmed += RestartLevel;
 
         exitGamePopup.OnExitConfirmed += BackToMenu;
     }
@@ -27,11 +30,13 @@ public class GameplayUIManager : MonoBehaviour
     private void OnDestroy()
     {
         pausePanel.OnResumeButtonClicked -= ResumeGame;
-        pausePanel.OnRestartButtonClicked -= RestartLevel;
+        pausePanel.OnRestartButtonClicked -= ShowRestartLevelPopup;
         pausePanel.OnSettingsButtonClicked -= ShowSettingsPanel;
-        pausePanel.OnExitButtonClicked -= ShowExitPopup;
+        pausePanel.OnExitButtonClicked -= ShowExitGamePopup;
 
         settingsPanel.OnBackPressed -= ShowPausePanel;
+
+        restartLevelPopup.OnRestartConfirmed -= RestartLevel;
 
         exitGamePopup.OnExitConfirmed -= BackToMenu;
     }
@@ -83,7 +88,12 @@ public class GameplayUIManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    private void ShowExitPopup()
+    private void ShowRestartLevelPopup()
+    {
+        restartLevelPopup.Show();
+    }
+
+    private void ShowExitGamePopup()
     {
         exitGamePopup.Show();
     }
