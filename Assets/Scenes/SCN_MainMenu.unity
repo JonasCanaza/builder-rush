@@ -859,10 +859,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Settings Panel
       objectReference: {fileID: 0}
-    - target: {fileID: 7821194994258007570, guid: 905e2fa4f60f909419d834e26b59dcbd, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3083,8 +3079,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 16465372}
   m_HandleRect: {fileID: 16465371}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.6099686
+  m_Value: 1.0000002
+  m_Size: 0.6099687
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
