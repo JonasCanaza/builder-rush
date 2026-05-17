@@ -17,10 +17,13 @@ public class TowerController : MonoBehaviour
     private bool isPlaced = false;
     private bool attachedToDropper = true;
 
+    private Animator animator;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
         col = GetComponent<Collider>();
+        animator = GetComponent<Animator>();
     }
 
     private void FixedUpdate()
@@ -61,6 +64,7 @@ public class TowerController : MonoBehaviour
     {
         attachedToDropper = false;
         rb.isKinematic = false;
+        animator.SetTrigger("TowerLaunch");
     }
 
     private void ApplyExtraGravity()
