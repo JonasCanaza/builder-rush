@@ -86,7 +86,15 @@ public class TowerDropperController : MonoBehaviour
 
     private void SpawnTower()
     {
-        currentTower = Instantiate(referencesData.TowerPrefab, spawnPoint.position, Quaternion.identity, towerContainer);
+        if (referencesData.TowersPrefab.Length == 0)
+        {
+            return;
+        }
+
+        int randomIndex = Random.Range(0, referencesData.TowersPrefab.Length);
+        TowerController tower = referencesData.TowersPrefab[randomIndex];
+
+        currentTower = Instantiate(tower, spawnPoint.position, Quaternion.identity, towerContainer);
         currentTower.AttachToDropper();
     }
 

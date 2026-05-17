@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05fd4ac4ad2829b4a8e632dd8f713c28, type: 3}
   m_Name: Tower Dropper References
   m_EditorClassIdentifier: Assembly-CSharp::TowerDropperReferencesSO
-  <TowerPrefab>k__BackingField: {fileID: 5756258864908256894, guid: dcbabb423d5e56e42ad4c7f8481a75ef, type: 3}
+  <TowersPrefab>k__BackingField:
+  - {fileID: 5756258864908256894, guid: dcbabb423d5e56e42ad4c7f8481a75ef, type: 3}
+  - {fileID: 486375796197978592, guid: 8a996aa0d4333de4080a8ccfb22ce615, type: 3}
+  - {fileID: 845187789894598712, guid: 028dd938ee9370b42b7ced73e24e8101, type: 3}
   <LaunchSfx>k__BackingField: {fileID: 8300000, guid: e053153acc5865046b5b236a3415973c, type: 3}

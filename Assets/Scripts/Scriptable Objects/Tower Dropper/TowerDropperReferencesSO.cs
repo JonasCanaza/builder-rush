@@ -4,7 +4,7 @@ using UnityEngine;
 public class TowerDropperReferencesSO : ScriptableObject
 {
     [field: Header("Prefabs")]
-    [field: SerializeField] public TowerController TowerPrefab { get; private set; }
+    [field: SerializeField] public TowerController[] TowersPrefab { get; private set; }
 
     [field: Header("Clips")]
     [field: SerializeField] public AudioClip LaunchSfx { get; private set; }
