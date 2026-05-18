@@ -12,6 +12,7 @@ public class GameplayUIManager : MonoBehaviour
     [Header("Popups References")]
     [SerializeField] private RestartLevelPopup restartLevelPopup;
     [SerializeField] private ExitLevelPopup exitGamePopup;
+    [SerializeField] private GameOverPopup gameOverPopup;
 
     private void Awake()
     {
@@ -34,6 +35,10 @@ public class GameplayUIManager : MonoBehaviour
 
         settingsPanel.OnBackPressed += ShowPausePanel;
 
+        GameManager.Instance.OnGameOver += ShowGameOverPopup;
+        gameOverPopup.OnRestartPressed += RestartLevel;
+        gameOverPopup.OnExitPressed += BackToMenu;
+
         restartLevelPopup.OnRestartPressed += RestartLevel;
 
         exitGamePopup.OnExitPressed += BackToMenu;
@@ -47,6 +52,14 @@ public class GameplayUIManager : MonoBehaviour
         pausePanel.OnExitPressed -= ShowExitGamePopup;
 
         settingsPanel.OnBackPressed -= ShowPausePanel;
+
+        if (GameManager.Instance)
+        {
+            GameManager.Instance.OnGameOver -= ShowGameOverPopup;
+        }
+
+        gameOverPopup.OnRestartPressed -= RestartLevel;
+        gameOverPopup.OnExitPressed -= BackToMenu;
 
         restartLevelPopup.OnRestartPressed -= RestartLevel;
 
@@ -88,6 +101,14 @@ public class GameplayUIManager : MonoBehaviour
     #endregion
 
     #region Popup Navigation
+
+    private void ShowGameOverPopup()
+    {
+        AudioManager.Instance.PauseMusic();
+        Time.timeScale = 0.0f;
+        gameOverPopup.ShowResults();
+        gameOverPopup.Show();
+    }
 
     private void ShowRestartLevelPopup()
     {

@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
 {
     private const string GAMEPLAY_SCENE = "SCN_Gameplay";
 
+    public event Action OnGameOver;
     public event Action<int> OnScoreChanged;
     public event Action<int> OnPerfectPlacementsChanged;
     public event Action<int> OnTowersPlacedChanged;
@@ -35,12 +36,12 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         Score += points;
         OnScoreChanged?.Invoke(Score);
 
-        if (Score > PlayerData.Score)
+        if (Score > PlayerData.BestScore)
         {
-            PlayerData.Score = Score;
+            PlayerData.BestScore = Score;
 
 #if UNITY_EDITOR
-            Debug.Log($"Highscore: {PlayerData.Score}");
+            Debug.Log($"Best score: {PlayerData.BestScore}");
 #endif
         }
     }
@@ -63,7 +64,7 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         if (!IsGameOver)
         {
             IsGameOver = true;
-            SceneManager.LoadScene(GAMEPLAY_SCENE);
+            OnGameOver?.Invoke();
         }
     }
 
