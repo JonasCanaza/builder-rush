@@ -343,7 +343,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CreditsPanelController
   scrollBar: {fileID: 1672863522}
   backButton: {fileID: 1602297838}
-  mainMenuManager: {fileID: 1794776521}
 --- !u!225 &282667754
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -1315,11 +1314,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6826ff8735a64df428aff2ebe94bf0e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainMenuController
-  buttonPlay: {fileID: 1974962271}
-  buttonSettings: {fileID: 1229120014}
-  buttonCredits: {fileID: 698025392}
-  buttonExit: {fileID: 1831124184}
-  mainMenuManager: {fileID: 1794776521}
+  playButton: {fileID: 1974962271}
+  settingsButton: {fileID: 1229120014}
+  creditsButton: {fileID: 698025392}
+  exitButton: {fileID: 1831124184}
 --- !u!225 &773157621
 CanvasGroup:
   m_ObjectHideFlags: 0

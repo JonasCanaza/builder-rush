@@ -5,7 +5,7 @@ public class GameplayUIManager : MonoBehaviour
 {
     public bool IsPaused { get; private set; }
 
-    [Header("Panel Settings")]
+    [Header("Panels References")]
     [SerializeField] private PausePanelController pausePanel;
     [SerializeField] private SettingsPanelController settingsPanel;
 
@@ -13,33 +13,49 @@ public class GameplayUIManager : MonoBehaviour
     [SerializeField] private RestartLevelPopup restartLevelPopup;
     [SerializeField] private ExitLevelPopup exitGamePopup;
 
-    private void Start()
+    private void Awake()
     {
-        pausePanel.OnResumeButtonClicked += ResumeGame;
-        pausePanel.OnRestartButtonClicked += ShowRestartLevelPopup;
-        pausePanel.OnSettingsButtonClicked += ShowSettingsPanel;
-        pausePanel.OnExitButtonClicked += ShowExitGamePopup;
-
-        settingsPanel.OnBackPressed += ShowPausePanel;
-
-        restartLevelPopup.OnRestartConfirmed += RestartLevel;
-
-        exitGamePopup.OnExitConfirmed += BackToMenu;
+        SubscribeEvents();
     }
 
     private void OnDestroy()
     {
-        pausePanel.OnResumeButtonClicked -= ResumeGame;
-        pausePanel.OnRestartButtonClicked -= ShowRestartLevelPopup;
-        pausePanel.OnSettingsButtonClicked -= ShowSettingsPanel;
-        pausePanel.OnExitButtonClicked -= ShowExitGamePopup;
+        UnsubscribeEvents();
+    }
+
+    #region Event Subscription
+
+    private void SubscribeEvents()
+    {
+        pausePanel.OnResumePressed += ResumeGame;
+        pausePanel.OnRestartPressed += ShowRestartLevelPopup;
+        pausePanel.OnSettingsPressed += ShowSettingsPanel;
+        pausePanel.OnExitPressed += ShowExitGamePopup;
+
+        settingsPanel.OnBackPressed += ShowPausePanel;
+
+        restartLevelPopup.OnRestartPressed += RestartLevel;
+
+        exitGamePopup.OnExitPressed += BackToMenu;
+    }
+
+    private void UnsubscribeEvents()
+    {
+        pausePanel.OnResumePressed -= ResumeGame;
+        pausePanel.OnRestartPressed -= ShowRestartLevelPopup;
+        pausePanel.OnSettingsPressed -= ShowSettingsPanel;
+        pausePanel.OnExitPressed -= ShowExitGamePopup;
 
         settingsPanel.OnBackPressed -= ShowPausePanel;
 
-        restartLevelPopup.OnRestartConfirmed -= RestartLevel;
+        restartLevelPopup.OnRestartPressed -= RestartLevel;
 
-        exitGamePopup.OnExitConfirmed -= BackToMenu;
+        exitGamePopup.OnExitPressed -= BackToMenu;
     }
+
+    #endregion
+
+    #region Pause Control
 
     public void ToggleShowPausePanel()
     {
@@ -53,6 +69,10 @@ public class GameplayUIManager : MonoBehaviour
         }
     }
 
+    #endregion
+
+    #region Panel Navigation
+
     private void ShowPausePanel()
     {
         pausePanel.Show();
@@ -64,6 +84,24 @@ public class GameplayUIManager : MonoBehaviour
         pausePanel.Hide();
         settingsPanel.Show();
     }
+
+    #endregion
+
+    #region Popup Navigation
+
+    private void ShowRestartLevelPopup()
+    {
+        restartLevelPopup.Show();
+    }
+
+    private void ShowExitGamePopup()
+    {
+        exitGamePopup.Show();
+    }
+
+    #endregion
+
+    #region Pause Management
 
     private void PauseGame()
     {
@@ -81,21 +119,15 @@ public class GameplayUIManager : MonoBehaviour
         AudioManager.Instance.ResumeMusic();
     }
 
+    #endregion
+
+    #region Scene Management
+
     private void RestartLevel()
     {
         Time.timeScale = 1.0f;
         AudioManager.Instance.StopMusic();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
-
-    private void ShowRestartLevelPopup()
-    {
-        restartLevelPopup.Show();
-    }
-
-    private void ShowExitGamePopup()
-    {
-        exitGamePopup.Show();
     }
 
     private void BackToMenu()
@@ -106,4 +138,6 @@ public class GameplayUIManager : MonoBehaviour
         AudioManager.Instance.StopMusic();
         SceneManager.LoadScene(AudioManager.MainMenu);
     }
+
+    #endregion
 }

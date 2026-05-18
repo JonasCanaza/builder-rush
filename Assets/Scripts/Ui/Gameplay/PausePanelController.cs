@@ -4,52 +4,52 @@ using System;
 
 public class PausePanelController : UIPanel
 {
-    public event Action OnResumeButtonClicked;
-    public event Action OnRestartButtonClicked;
-    public event Action OnSettingsButtonClicked;
-    public event Action OnExitButtonClicked;
+    public event Action OnResumePressed;
+    public event Action OnRestartPressed;
+    public event Action OnSettingsPressed;
+    public event Action OnExitPressed;
 
-    [Header("Button Settings")]
-    [SerializeField] private Button buttonResume;
-    [SerializeField] private Button buttonRestart;
-    [SerializeField] private Button buttonSettings;
-    [SerializeField] private Button buttonExit;
+    [Header("Button References")]
+    [SerializeField] private Button resumeButton;
+    [SerializeField] private Button restartButton;
+    [SerializeField] private Button settingsButton;
+    [SerializeField] private Button exitButton;
 
     protected override void Awake()
     {
         base.Awake();
 
-        buttonResume.onClick.AddListener(OnButtonResumeClicked);
-        buttonRestart.onClick.AddListener(OnButtonRestartClicked);
-        buttonSettings.onClick.AddListener(OnButtonSettingsClicked);
-        buttonExit.onClick.AddListener(OnButtonExitClicked);
+        resumeButton.onClick.AddListener(HandleResumeClicked);
+        restartButton.onClick.AddListener(HandleRestartClicked);
+        settingsButton.onClick.AddListener(HandleSettingsClicked);
+        exitButton.onClick.AddListener(HandleExitClicked);
     }
 
     private void OnDestroy()
     {
-        buttonResume.onClick.RemoveAllListeners();
-        buttonRestart.onClick.RemoveAllListeners();
-        buttonSettings.onClick.RemoveAllListeners();
-        buttonExit.onClick.RemoveAllListeners();
+        resumeButton.onClick.RemoveListener(HandleResumeClicked);
+        restartButton.onClick.RemoveListener(HandleRestartClicked);
+        settingsButton.onClick.RemoveListener(HandleSettingsClicked);
+        exitButton.onClick.RemoveListener(HandleExitClicked);
     }
 
-    private void OnButtonResumeClicked()
+    private void HandleResumeClicked()
     {
-        OnResumeButtonClicked?.Invoke();
+        OnResumePressed?.Invoke();
     }
 
-    private void OnButtonRestartClicked()
+    private void HandleRestartClicked()
     {
-        OnRestartButtonClicked?.Invoke();
+        OnRestartPressed?.Invoke();
     }
 
-    private void OnButtonSettingsClicked()
+    private void HandleSettingsClicked()
     {
-        OnSettingsButtonClicked?.Invoke();
+        OnSettingsPressed?.Invoke();
     }
 
-    private void OnButtonExitClicked()
+    private void HandleExitClicked()
     {
-        OnExitButtonClicked?.Invoke();
+        OnExitPressed?.Invoke();
     }
 }

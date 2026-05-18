@@ -1,48 +1,107 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MainMenuManager : MonoBehaviour
 {
-    [Header("References Settings")]
+    [Header("Panels References")]
     [SerializeField] private MainPanelController mainPanel;
     [SerializeField] private SettingsPanelController settingsPanel;
     [SerializeField] private CreditsPanelController creditsPanel;
 
-    [Header("Popups References")]
+    [Header("Popup Reference")]
     [SerializeField] private ExitGamePopup exitGamePopup;
 
     private void Awake()
     {
-        settingsPanel.OnBackPressed += ShowMainPanel;
+        SubscribeEvents();
     }
 
     private void OnDestroy()
     {
-        settingsPanel.OnBackPressed -= ShowMainPanel;
+        UnsubscribeEvents();
     }
 
-    public void ShowMainPanel()
+    #region Event Subscriptions
+
+    private void SubscribeEvents()
+    {
+        mainPanel.OnPlayPressed += HandlePlayPressed;
+        mainPanel.OnSettingsPressed += ShowSettingsPanel;
+        mainPanel.OnCreditsPressed += ShowCreditsPanel;
+        mainPanel.OnExitPressed += ShowExitPopup;
+
+        settingsPanel.OnBackPressed += ShowMainPanel;
+
+        creditsPanel.OnBackPressed += ShowMainPanel;
+
+        exitGamePopup.OnExitPressed += HandleExitPressed;
+    }
+
+    private void UnsubscribeEvents()
+    {
+        mainPanel.OnPlayPressed -= HandlePlayPressed;
+        mainPanel.OnSettingsPressed -= ShowSettingsPanel;
+        mainPanel.OnCreditsPressed -= ShowCreditsPanel;
+        mainPanel.OnExitPressed -= ShowExitPopup;
+
+        settingsPanel.OnBackPressed -= ShowMainPanel;
+
+        creditsPanel.OnBackPressed -= ShowMainPanel;
+
+        exitGamePopup.OnExitPressed -= HandleExitPressed;
+    }
+
+    #endregion
+
+    #region Panel Navigation
+
+    private void ShowMainPanel()
     {
         mainPanel.Show();
         settingsPanel.Hide();
         creditsPanel.Hide();
     }
 
-    public void ShowSettingsPanel()
+    private void ShowSettingsPanel()
     {
         mainPanel.Hide();
         settingsPanel.Show();
         creditsPanel.Hide();
     }
 
-    public void ShowCreditsPanel()
+    private void ShowCreditsPanel()
     {
         mainPanel.Hide();
         settingsPanel.Hide();
         creditsPanel.Show();
     }
 
-    public void ShowExitPopup()
+    #endregion
+
+    #region Popup Navigation
+
+    private void ShowExitPopup()
     {
         exitGamePopup.Show();
     }
+
+    #endregion
+
+    #region Event Handlers
+
+    private void HandlePlayPressed()
+    {
+        SceneManager.LoadScene("SCN_Gameplay");
+    }
+
+    private void HandleExitPressed()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
+    }
+
+    #endregion
 }

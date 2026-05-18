@@ -4,8 +4,9 @@ using System;
 
 public class RestartLevelPopup : UIPopup
 {
-    public event Action OnRestartConfirmed;
+    public event Action OnRestartPressed;
 
+    [Header("Button References")]
     [SerializeField] private Button restartButton;
     [SerializeField] private Button cancelButton;
 
@@ -13,8 +14,8 @@ public class RestartLevelPopup : UIPopup
     {
         base.Awake();
 
-        restartButton.onClick.AddListener(OnRestartButton);
-        cancelButton.onClick.AddListener(OnCancelButton);
+        restartButton.onClick.AddListener(HandleRestartClicked);
+        cancelButton.onClick.AddListener(HandleCancelClicked);
     }
 
     private void OnDestroy()
@@ -23,12 +24,12 @@ public class RestartLevelPopup : UIPopup
         cancelButton.onClick.RemoveAllListeners();
     }
 
-    private void OnRestartButton()
+    private void HandleRestartClicked()
     {
-        OnRestartConfirmed?.Invoke();
+        OnRestartPressed?.Invoke();
     }
 
-    private void OnCancelButton()
+    private void HandleCancelClicked()
     {
         Hide();
     }

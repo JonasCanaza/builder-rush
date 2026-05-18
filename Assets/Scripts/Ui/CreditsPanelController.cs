@@ -1,30 +1,32 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class CreditsPanelController : UIPanel
 {
-    [Header("Scroll View Settings")]
+    public event Action OnBackPressed;
+
+    [Header("Scroll View Reference")]
     [SerializeField] private Scrollbar scrollBar;
 
-    [Header("References Settings")]
+    [Header("Button Reference")]
     [SerializeField] private Button backButton;
-    [SerializeField] private MainMenuManager mainMenuManager;
 
     protected override void Awake()
     {
         base.Awake();
 
-        backButton.onClick.AddListener(OnButtonBackClicked);
+        backButton.onClick.AddListener(HandleBackClicked);
     }
 
     private void OnDestroy()
     {
-        backButton.onClick.RemoveAllListeners();
+        backButton.onClick.RemoveListener(HandleBackClicked);
     }
 
-    private void OnButtonBackClicked()
+    private void HandleBackClicked()
     {
         scrollBar.value = 1.0f;
-        mainMenuManager.ShowMainPanel();
+        OnBackPressed?.Invoke();
     }
 }

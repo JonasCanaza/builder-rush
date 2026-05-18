@@ -4,8 +4,9 @@ using System;
 
 public class ExitLevelPopup : UIPopup
 {
-    public event Action OnExitConfirmed;
+    public event Action OnExitPressed;
 
+    [Header("Button References")]
     [SerializeField] private Button cancelButton;
     [SerializeField] private Button exitButton;
 
@@ -13,23 +14,23 @@ public class ExitLevelPopup : UIPopup
     {
         base.Awake();
 
-        cancelButton.onClick.AddListener(OnCancelButton);
-        exitButton.onClick.AddListener(OnExitButton);
+        cancelButton.onClick.AddListener(HandleCancelClicked);
+        exitButton.onClick.AddListener(HandleExitClicked);
     }
 
     private void OnDestroy()
     {
-        cancelButton.onClick.RemoveAllListeners();
-        exitButton.onClick.RemoveAllListeners();
+        cancelButton.onClick.AddListener(HandleCancelClicked);
+        exitButton.onClick.AddListener(HandleExitClicked);
     }
 
-    private void OnCancelButton()
+    private void HandleCancelClicked()
     {
         Hide();
     }
 
-    private void OnExitButton()
+    private void HandleExitClicked()
     {
-        OnExitConfirmed?.Invoke();
+        OnExitPressed?.Invoke();
     }
 }

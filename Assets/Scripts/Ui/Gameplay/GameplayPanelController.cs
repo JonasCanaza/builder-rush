@@ -3,44 +3,44 @@ using TMPro;
 
 public class GameplayPanelController : UIPanel
 {
-    [Header("Panel Settings")]
+    [Header("Text References")]
     [SerializeField] private TMP_Text scoreText;
     [SerializeField] private TMP_Text perfectPlacementsText;
-    [SerializeField] private TMP_Text towersPlacedsText;
+    [SerializeField] private TMP_Text towersPlacedText;
 
     private void Start()
     {
-        GameManager.Instance.OnScoreChanged += UpdateScore;
-        GameManager.Instance.OnPerfectPlacementsChanged += UpdatePerfectPlacements;
-        GameManager.Instance.OnTowersPlacedChanged += UpdateTowersPlaced;
+        GameManager.Instance.OnScoreChanged += UpdateScoreText;
+        GameManager.Instance.OnPerfectPlacementsChanged += UpdatePerfectPlacementsText;
+        GameManager.Instance.OnTowersPlacedChanged += UpdateTowersPlacedText;
 
-        UpdateScore(GameManager.Instance.Score);
-        UpdatePerfectPlacements(GameManager.Instance.PerfectStreak);
-        UpdateTowersPlaced(GameManager.Instance.TowersPlaced);
+        UpdateScoreText(GameManager.Instance.Score);
+        UpdatePerfectPlacementsText(GameManager.Instance.PerfectStreak);
+        UpdateTowersPlacedText(GameManager.Instance.TowersPlaced);
     }
 
     private void OnDestroy()
     {
         if (GameManager.Instance)
         {
-            GameManager.Instance.OnScoreChanged -= UpdateScore;
-            GameManager.Instance.OnPerfectPlacementsChanged -= UpdatePerfectPlacements;
-            GameManager.Instance.OnTowersPlacedChanged -= UpdateTowersPlaced;
+            GameManager.Instance.OnScoreChanged -= UpdateScoreText;
+            GameManager.Instance.OnPerfectPlacementsChanged -= UpdatePerfectPlacementsText;
+            GameManager.Instance.OnTowersPlacedChanged -= UpdateTowersPlacedText;
         }
     }
 
-    private void UpdateScore(int amount)
+    private void UpdateScoreText(int amount)
     {
         scoreText.text = $"Score: {amount}";
     }
 
-    private void UpdatePerfectPlacements(int amount)
+    private void UpdatePerfectPlacementsText(int amount)
     {
         perfectPlacementsText.text = $"Perfects: {amount}";
     }
 
-    private void UpdateTowersPlaced(int amount)
+    private void UpdateTowersPlacedText(int amount)
     {
-        towersPlacedsText.text = $"Towers: {amount}";
+        towersPlacedText.text = $"Towers: {amount}";
     }
 }

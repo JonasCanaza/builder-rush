@@ -1,51 +1,55 @@
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
+using System;
 
 public class MainPanelController : UIPanel
 {
-    [Header("References Settings")]
-    [SerializeField] private Button buttonPlay;
-    [SerializeField] private Button buttonSettings;
-    [SerializeField] private Button buttonCredits;
-    [SerializeField] private Button buttonExit;
-    [SerializeField] private MainMenuManager mainMenuManager;
+    public event Action OnPlayPressed;
+    public event Action OnSettingsPressed;
+    public event Action OnCreditsPressed;
+    public event Action OnExitPressed;
+
+    [Header("Button References")]
+    [SerializeField] private Button playButton;
+    [SerializeField] private Button settingsButton;
+    [SerializeField] private Button creditsButton;
+    [SerializeField] private Button exitButton;
 
     protected override void Awake()
     {
         base.Awake();
 
-        buttonPlay.onClick.AddListener(OnButtonPlayClicked);
-        buttonSettings.onClick.AddListener(OnButtonSettingsClicked);
-        buttonCredits.onClick.AddListener(OnButtonCreditsClicked);
-        buttonExit.onClick.AddListener(OnButtonExitClicked);
+        playButton.onClick.AddListener(HandlePlayClicked);
+        settingsButton.onClick.AddListener(HandleSettingsClicked);
+        creditsButton.onClick.AddListener(HandleCreditsClicked);
+        exitButton.onClick.AddListener(HandleExitClicked);
     }
 
     private void OnDestroy()
     {
-        buttonPlay.onClick.RemoveAllListeners();
-        buttonSettings.onClick.RemoveAllListeners();
-        buttonCredits.onClick.RemoveAllListeners();
-        buttonExit.onClick.RemoveAllListeners();
+        playButton.onClick.RemoveListener(HandlePlayClicked);
+        settingsButton.onClick.RemoveListener(HandleSettingsClicked);
+        creditsButton.onClick.RemoveListener(HandleCreditsClicked);
+        exitButton.onClick.RemoveListener(HandleExitClicked);
     }
 
-    private void OnButtonPlayClicked()
+    private void HandlePlayClicked()
     {
-        SceneManager.LoadScene("SCN_Gameplay");
+        OnPlayPressed?.Invoke();
     }
 
-    private void OnButtonSettingsClicked()
+    private void HandleSettingsClicked()
     {
-        mainMenuManager.ShowSettingsPanel();
+        OnSettingsPressed?.Invoke();
     }
 
-    private void OnButtonCreditsClicked()
+    private void HandleCreditsClicked()
     {
-        mainMenuManager.ShowCreditsPanel();
+        OnCreditsPressed?.Invoke();
     }
 
-    private void OnButtonExitClicked()
+    private void HandleExitClicked()
     {
-        mainMenuManager.ShowExitPopup();
+        OnExitPressed?.Invoke();
     }
 }

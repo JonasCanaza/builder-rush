@@ -13,14 +13,14 @@ public abstract class UIPanel : MonoBehaviour
 
     public virtual void Show()
     {
-        CanvasGroup.alpha = 1f;
+        CanvasGroup.alpha = 1.0f;
         CanvasGroup.interactable = true;
         CanvasGroup.blocksRaycasts = true;
     }
 
     public virtual void Hide()
     {
-        CanvasGroup.alpha = 0f;
+        CanvasGroup.alpha = 0.0f;
         CanvasGroup.interactable = false;
         CanvasGroup.blocksRaycasts = false;
     }

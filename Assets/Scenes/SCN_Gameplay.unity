@@ -1227,7 +1227,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameplayPanelController
   scoreText: {fileID: 196463035}
   perfectPlacementsText: {fileID: 470340763}
-  towersPlacedsText: {fileID: 1636417642}
+  towersPlacedText: {fileID: 1636417642}
 --- !u!225 &157145511
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -11872,10 +11872,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc69d4523e0c4e84686a28130baf1e28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PausePanelController
-  buttonResume: {fileID: 36886031}
-  buttonRestart: {fileID: 1975288839}
-  buttonSettings: {fileID: 682517521}
-  buttonExit: {fileID: 1642963757}
+  resumeButton: {fileID: 36886031}
+  restartButton: {fileID: 1975288839}
+  settingsButton: {fileID: 682517521}
+  exitButton: {fileID: 1642963757}
 --- !u!225 &1682263726
 CanvasGroup:
   m_ObjectHideFlags: 0

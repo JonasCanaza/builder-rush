@@ -1,13 +1,13 @@
 using UnityEngine;
-using UnityEngine.Audio;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 using System;
 
 public class SettingsPanelController : UIPanel
 {
     public event Action OnBackPressed;
 
-    [Header("Panel Settings")]
+    [Header("Button Reference")]
     [SerializeField] private Button backButton;
 
     [Header("Audio Settings")]
@@ -23,11 +23,11 @@ public class SettingsPanelController : UIPanel
     {
         base.Awake();
 
-        backButton.onClick.AddListener(OnButtonBackClicked);
+        backButton.onClick.AddListener(HandleBackClicked);
 
-        sliderMaster.onValueChanged.AddListener(OnMasterVolumeChanged);
-        sliderMusic.onValueChanged.AddListener(OnMusicVolumeChanged);
-        sliderSfx.onValueChanged.AddListener(OnSfxVolumeChanged);
+        sliderMaster.onValueChanged.AddListener(HandleMasterVolumeChanged);
+        sliderMusic.onValueChanged.AddListener(HandleMusicVolumeChanged);
+        sliderSfx.onValueChanged.AddListener(HandleSfxVolumeChanged);
     }
 
     private void Start()
@@ -39,31 +39,31 @@ public class SettingsPanelController : UIPanel
 
     private void OnDestroy()
     {
-        backButton.onClick.RemoveAllListeners();
+        backButton.onClick.RemoveListener(HandleBackClicked);
 
-        sliderMaster.onValueChanged.RemoveAllListeners();
-        sliderMusic.onValueChanged.RemoveAllListeners();
-        sliderSfx.onValueChanged.RemoveAllListeners();
+        sliderMaster.onValueChanged.RemoveListener(HandleMasterVolumeChanged);
+        sliderMusic.onValueChanged.RemoveListener(HandleMusicVolumeChanged);
+        sliderSfx.onValueChanged.RemoveListener(HandleSfxVolumeChanged);
     }
 
-    private void OnButtonBackClicked()
+    private void HandleBackClicked()
     {
         OnBackPressed?.Invoke();
     }
 
-    private void OnMasterVolumeChanged(float currentValue)
+    private void HandleMasterVolumeChanged(float currentValue)
     {
         SetVolume(AudioData.KEY_MASTER_VOLUME, currentValue);
         AudioData.MasterVolume = currentValue;
     }
 
-    private void OnMusicVolumeChanged(float currentValue)
+    private void HandleMusicVolumeChanged(float currentValue)
     {
         SetVolume(AudioData.KEY_MUSIC_VOLUME, currentValue);
         AudioData.MusicVolume = currentValue;
     }
 
-    private void OnSfxVolumeChanged(float currentValue)
+    private void HandleSfxVolumeChanged(float currentValue)
     {
         SetVolume(AudioData.KEY_SFX_VOLUME, currentValue);
         AudioData.SfxVolume = currentValue;
