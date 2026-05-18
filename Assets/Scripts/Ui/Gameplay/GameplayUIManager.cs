@@ -101,7 +101,6 @@ public class GameplayUIManager : MonoBehaviour
     private void ShowSettingsPanel()
     {
         CanTogglePause = false;
-        pausePanel.Hide();
         settingsPanel.Show();
     }
 
