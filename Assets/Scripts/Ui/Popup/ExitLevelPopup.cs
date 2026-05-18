@@ -4,6 +4,7 @@ using System;
 
 public class ExitLevelPopup : UIPopup
 {
+    public event Action OnCancelPressed;
     public event Action OnExitPressed;
 
     [Header("Button References")]
@@ -26,6 +27,7 @@ public class ExitLevelPopup : UIPopup
 
     private void HandleCancelClicked()
     {
+        OnCancelPressed?.Invoke();
         Hide();
     }
 

@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 public class GameplayUIManager : MonoBehaviour
 {
     public bool IsPaused { get; private set; }
+    public bool CanTogglePause { get; private set; } = true;
 
     [Header("Panels References")]
     [SerializeField] private PausePanelController pausePanel;
@@ -40,7 +41,9 @@ public class GameplayUIManager : MonoBehaviour
         gameOverPopup.OnExitPressed += BackToMenu;
 
         restartLevelPopup.OnRestartPressed += RestartLevel;
+        restartLevelPopup.OnCancelPressed += EnableTogglePause;
 
+        exitGamePopup.OnCancelPressed += EnableTogglePause;
         exitGamePopup.OnExitPressed += BackToMenu;
     }
 
@@ -62,7 +65,9 @@ public class GameplayUIManager : MonoBehaviour
         gameOverPopup.OnExitPressed -= BackToMenu;
 
         restartLevelPopup.OnRestartPressed -= RestartLevel;
+        restartLevelPopup.OnCancelPressed -= EnableTogglePause;
 
+        exitGamePopup.OnCancelPressed -= EnableTogglePause;
         exitGamePopup.OnExitPressed -= BackToMenu;
     }
 
@@ -88,12 +93,14 @@ public class GameplayUIManager : MonoBehaviour
 
     private void ShowPausePanel()
     {
+        CanTogglePause = true;
         pausePanel.Show();
         settingsPanel.Hide();
     }
 
     private void ShowSettingsPanel()
     {
+        CanTogglePause = false;
         pausePanel.Hide();
         settingsPanel.Show();
     }
@@ -104,6 +111,7 @@ public class GameplayUIManager : MonoBehaviour
 
     private void ShowGameOverPopup()
     {
+        CanTogglePause = false;
         AudioManager.Instance.PauseMusic();
         Time.timeScale = 0.0f;
         gameOverPopup.ShowResults();
@@ -112,11 +120,13 @@ public class GameplayUIManager : MonoBehaviour
 
     private void ShowRestartLevelPopup()
     {
+        CanTogglePause = false;
         restartLevelPopup.Show();
     }
 
     private void ShowExitGamePopup()
     {
+        CanTogglePause = false;
         exitGamePopup.Show();
     }
 
@@ -134,10 +144,16 @@ public class GameplayUIManager : MonoBehaviour
 
     private void ResumeGame()
     {
+        CanTogglePause = true;
         IsPaused = false;
         pausePanel.Hide();
         Time.timeScale = 1.0f;
         AudioManager.Instance.ResumeMusic();
+    }
+
+    private void EnableTogglePause()
+    {
+        CanTogglePause = true;
     }
 
     #endregion

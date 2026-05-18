@@ -47,7 +47,7 @@ public class TowerDropperController : MonoBehaviour
     private void ReadPauseInput()
     {
         // PAUSE
-        if (Input.GetKeyUp(KeyCode.Escape))
+        if (Input.GetKeyUp(KeyCode.Escape) && gameplayUIManager.CanTogglePause)
         {
             gameplayUIManager.ToggleShowPausePanel();
         }

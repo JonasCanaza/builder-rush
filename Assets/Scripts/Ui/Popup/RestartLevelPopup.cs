@@ -5,6 +5,7 @@ using System;
 public class RestartLevelPopup : UIPopup
 {
     public event Action OnRestartPressed;
+    public event Action OnCancelPressed;
 
     [Header("Button References")]
     [SerializeField] private Button restartButton;
@@ -31,6 +32,7 @@ public class RestartLevelPopup : UIPopup
 
     private void HandleCancelClicked()
     {
+        OnCancelPressed?.Invoke();
         Hide();
     }
 }
