@@ -20,6 +20,11 @@ public class GameplayUIManager : MonoBehaviour
         SubscribeEvents();
     }
 
+    private void Start()
+    {
+        HideMouse();
+    }
+
     private void OnDestroy()
     {
         UnsubscribeEvents();
@@ -110,6 +115,7 @@ public class GameplayUIManager : MonoBehaviour
 
     private void ShowGameOverPopup()
     {
+        ShowMouse();
         CanTogglePause = false;
         AudioManager.Instance.PauseMusic();
         Time.timeScale = 0.0f;
@@ -135,6 +141,7 @@ public class GameplayUIManager : MonoBehaviour
 
     private void PauseGame()
     {
+        ShowMouse();
         AudioManager.Instance.PauseMusic();
         IsPaused = true;
         pausePanel.Show();
@@ -143,6 +150,7 @@ public class GameplayUIManager : MonoBehaviour
 
     private void ResumeGame()
     {
+        HideMouse();
         CanTogglePause = true;
         IsPaused = false;
         pausePanel.Hide();
@@ -173,6 +181,22 @@ public class GameplayUIManager : MonoBehaviour
         Time.timeScale = 1.0f;
         AudioManager.Instance.StopMusic();
         SceneManager.LoadScene(AudioManager.MainMenu);
+    }
+
+    #endregion
+
+    #region Mouse Visibility Management
+
+    private void ShowMouse()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+
+    private void HideMouse()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     #endregion
